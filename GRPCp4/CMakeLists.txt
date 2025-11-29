@@ -5,8 +5,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 project ("GRPCp4")
 
+#set(CMAKE_TOOLCHAIN_FILE "E:/Programs/vcpkg/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "" FORCE)
+#set(VCPKG_TARGET_TRIPLET "x64-windows" CACHE STRING "" FORCE)
+
 find_package(protobuf CONFIG REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
+find_package(tinyobjloader CONFIG REQUIRED)
+find_package(DirectXTex CONFIG REQUIRED)
 
 set(PROTO_SRC_PATH "${CMAKE_CURRENT_SOURCE_DIR}/proto/generated"
 	CACHE PATH "Proto Files" FORCE)
@@ -14,6 +19,18 @@ set(PROTO_SRC_PATH "${CMAKE_CURRENT_SOURCE_DIR}/proto/generated"
 file(GLOB_RECURSE PROTO_SRC "${PROTO_SRC_PATH}/*.cc")
 file(GLOB_RECURSE PROTO_HEADERS "${PROTO_SRC_PATH}/*.h")
 
+#add_library(DirectXTexLib STATIC IMPORTED)
+##set_target_properties(DirectXTexLib PROPERTIES
+ ##   IMPORTED_LOCATION "${VCPKG_ROOT}/installed/x64-windows/lib/DirectXTex.lib"
+  #  INTERFACE_INCLUDE_DIRECTORIES "${VCPKG_ROOT}/installed/x64-windows/include"
+#)
+
+
+add_library(DirectXTexLib STATIC IMPORTED)
+set_target_properties(DirectXTexLib PROPERTIES
+    IMPORTED_LOCATION "E:/Programs/vcpkg/vcpkg/installed/x64-windows/lib/DirectXTex.lib"
+    INTERFACE_INCLUDE_DIRECTORIES "E:/Programs/vcpkg/vcpkg/installed/x64-windows/include"
+)
 
 
 # setup the exe of the server
@@ -35,6 +52,11 @@ target_link_libraries(GRPC_Server PUBLIC
 	gRPC::grpc
 	gRPC::grpc++
 	gRPC::grpc++_reflection
+	tinyobjloader::tinyobjloader
+	DirectXTexLib
+    d3d11
+    dxgi
+    dxguid
 )
 
 
@@ -58,6 +80,11 @@ target_link_libraries(GRPC_Client PUBLIC
 	gRPC::grpc
 	gRPC::grpc++
 	gRPC::grpc++_reflection
+	tinyobjloader::tinyobjloader
+	DirectXTexLib
+    d3d11
+    dxgi
+    dxguid
 )
 
 
@@ -68,3 +95,6 @@ target_link_libraries(GRPC_Client PUBLIC
 #			"${CMAKE_CURRENT_SOURCE_DIR}/multi_run.bat"
 #			"$<TARGET_FILE_DIR:GRPC_Client>/multi_run.bat"
 #)
+
+
+#include_directories("${CLIENT_SRC_PATH}/Libs/tinyobjloader/include/tiny_obj_loader.h")
