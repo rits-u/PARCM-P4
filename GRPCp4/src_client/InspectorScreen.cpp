@@ -20,19 +20,19 @@ void InspectorScreen::draw()
 		this->displayObjectName();
 		this->displayTransform();
 
-		ImGui::NewLine(); ImGui::Separator();
-		/*if (selectedObject) {
-			if (!selectedObject->getComponent<Renderer>()->hasTexture &&
-				!selectedObject->getComponent<Renderer>()->enableTextureSelection)
-			{
-				if (ImGui::Button("Add Texture")) {
-					selectedObject->getComponent<Renderer>()->enableTextureSelection = true;
-				}
-			}
-			else {
-				this->displayTextureSection();
-			}
-		}*/
+		//ImGui::NewLine(); ImGui::Separator();
+		//if (selectedObject) {
+		//	if (!selectedObject->getComponent<Renderer>()->hasTexture &&
+		//		!selectedObject->getComponent<Renderer>()->enableTextureSelection)
+		//	{
+		//		if (ImGui::Button("Add Texture")) {
+		//			selectedObject->getComponent<Renderer>()->enableTextureSelection = true;
+		//		}
+		//	}
+		//	else {
+		//		this->displayTextureSection();
+		//	}
+		//}
 
 		//ImGui::NewLine(); ImGui::Separator();
 		//this->displayPhysicsComponent();

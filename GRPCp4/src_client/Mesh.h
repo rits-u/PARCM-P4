@@ -12,10 +12,8 @@ class Mesh : public Resource
 {
 public:
 	Mesh(const wchar_t* fullPath);
-	
 	~Mesh();
-	//const VertexBufferPtr& getVertexBuffer();
-	//const IndexBufferPtr& getIndexBuffer();
+
 
 	std::vector<VertexMesh>& getVertices();
 	std::vector<unsigned int>& getIndices();
@@ -23,8 +21,6 @@ public:
 private:
 	std::vector<VertexMesh> m_vertices;
 	std::vector<unsigned int> m_indices;
-	//VertexBufferPtr vertexBuffer;
-	//IndexBufferPtr indexBuffer;
 
 private:
 	std::string WStringToString(const std::wstring& wstr);

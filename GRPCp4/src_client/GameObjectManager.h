@@ -36,7 +36,7 @@ public:
 	int activeObjects();
 	void renderAllPerCamera(std::vector<Camera*> cameras, int width, int height, SwapChainPtr sc);
 	void addObject(GameObject* gameObject);
-	void createObject(PrimitiveType type, void* shaderByteCode, size_t sizeShader);
+	//void createObject(PrimitiveType type, void* shaderByteCode, size_t sizeShader);
 	void deleteObject(GameObject* gameObject);
 	void deleteObjectByName(string name);
 	void clearSelectedObject();
@@ -44,7 +44,6 @@ public:
 	void setSelectedObject(GameObject* gameObject);
 	GameObject* getSelectedObject();
 
-	//void createModel(String model, void* shaderByteCode, size_t sizeShader);
 	string adjustName(string name);
 	void processDeletions();
 

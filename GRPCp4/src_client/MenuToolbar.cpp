@@ -23,16 +23,6 @@ void MenuToolbar::draw()
 
     if (ImGui::BeginMainMenuBar())
     {
-       /* if (ImGui::BeginMenu("File")) {
-            if (ImGui::MenuItem("Save Level")) {
-                levelSerializer->SaveLevelToFile(); 
-            }
-            if (ImGui::MenuItem("Load Level")) {
-                levelDeserializer->LoadLevelFromFile();
-            }
-            ImGui::EndMenu();
-        }*/
-
         if (ImGui::BeginMenu("About")) {
             if (ImGui::MenuItem("Credits")) {
                 this->toggleUIScreen(uiNames.CREDITS_SCREEN);
@@ -50,60 +40,6 @@ void MenuToolbar::draw()
 
             ImGui::EndMenu();
         }
-
-        /*if (ImGui::BeginMenu("Game Object")) {
-            if (ImGui::MenuItem("Cube")) {
-                GameObjectManager* manager = GameObjectManager::get();
-                GameObject* obj = new GameObject(manager->adjustName("Cube"));
-                obj->setPrimitiveType(PrimitiveType::CUBE);
-                obj->addComponent<CubeRenderer>();
-                manager->addObject(obj);
-                manager->setSelectedObject(obj);
-            }
-            if (ImGui::MenuItem("Plane")) {
-                GameObjectManager* manager = GameObjectManager::get();
-                GameObject* obj = new GameObject(manager->adjustName("Plane"));
-                obj->setPrimitiveType(PrimitiveType::PLANE);
-                obj->addComponent<PlaneRenderer>();
-                manager->addObject(obj);
-                manager->setSelectedObject(obj);
-            }
-            if (ImGui::MenuItem("Quad")) {
-                GameObjectManager* manager = GameObjectManager::get();
-                GameObject* obj = new GameObject(manager->adjustName("Quad"));
-                obj->setPrimitiveType(PrimitiveType::QUAD);
-                obj->addComponent<QuadRenderer>();
-                manager->addObject(obj);
-                manager->setSelectedObject(obj);
-            }
-            if (ImGui::MenuItem("Sphere")) {
-                GameObjectManager* manager = GameObjectManager::get();
-                GameObject* obj = new GameObject(manager->adjustName("Sphere"));
-                obj->setPrimitiveType(PrimitiveType::SPHERE);
-                obj->addComponent<SphereRenderer>();
-                manager->addObject(obj);
-                manager->setSelectedObject(obj);
-            }
-            if (ImGui::MenuItem("Cylinder")) {
-                GameObjectManager* manager = GameObjectManager::get();
-                GameObject* obj = new GameObject(manager->adjustName("Cylinder"));
-                obj->setPrimitiveType(PrimitiveType::CYLINDER);
-                obj->addComponent<CylinderRenderer>();
-                manager->addObject(obj);
-                manager->setSelectedObject(obj);
-            }
-            if (ImGui::MenuItem("Capsule")) {
-                GameObjectManager* manager = GameObjectManager::get();
-                GameObject* obj = new GameObject(manager->adjustName("Capsule"));
-                obj->setPrimitiveType(PrimitiveType::CAPSULE);
-                obj->addComponent<CapsuleRenderer>();
-                manager->addObject(obj);
-                manager->setSelectedObject(obj);
-            }
-            
-            ImGui::EndMenu();
-        }*/
-
 
 
         if (ImGui::BeginMenu("3D Objects")) {
@@ -134,12 +70,6 @@ void MenuToolbar::draw()
             ImGui::EndMenu();
         }
 
-     /*   if (ImGui::BeginMenu("Color")) {
-            if (ImGui::MenuItem("Show Color Picker")) {
-                showColorPicker = !showColorPicker;
-            }
-            ImGui::EndMenu();
-        }*/
 
         ImGui::EndMainMenuBar();
     }

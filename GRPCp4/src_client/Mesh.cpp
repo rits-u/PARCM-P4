@@ -97,16 +97,6 @@ std::vector<unsigned int>& Mesh::getIndices()
 	return this->m_indices;
 }
 
-//const VertexBufferPtr& Mesh::getVertexBuffer()
-//{
-//	return vertexBuffer;
-//}
-//
-//const IndexBufferPtr& Mesh::getIndexBuffer()
-//{
-//	return indexBuffer;
-//}
-
 std::string Mesh::WStringToString(const std::wstring& wstr)
 {
 	if (wstr.empty()) return {};

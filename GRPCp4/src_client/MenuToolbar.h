@@ -3,8 +3,6 @@
 #include "UIManager.h"
 #include "UINames.h"
 #include "GameObjectManager.h"
-//#include "LevelSerializer.h"
-//#include "LevelDeserializer.h"
 
 class GameObjectManager;
 
@@ -19,11 +17,6 @@ public:
 private:
 	void toggleUIScreen(String name);
 	void openColorPickerUI();
-
-private:
-	//LevelSerializer* levelSerializer;
-//	LevelDeserializer* levelDeserializer;
-	
 	bool showColorPicker;
 	void* shaderByteCode;
 	size_t sizeShader;

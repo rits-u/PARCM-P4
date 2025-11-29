@@ -1,5 +1,4 @@
 #pragma once
-//#include "Constant.h"
 #include "GameObject.h"
 #include <iostream>
 #include <string>

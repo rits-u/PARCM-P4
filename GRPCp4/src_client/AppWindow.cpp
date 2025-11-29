@@ -2,7 +2,6 @@
 
 #include <Windows.h>
 #include "Vector3D.h"
-//#include "Vector2D.h"
 #include "Matrix4x4.h"
 #include "InputSystem.h"
 #include "SceneCameraHandler.h"
@@ -26,7 +25,6 @@ void AppWindow::onCreate()
 {
 	Window::onCreate();
 	InputSystem::get()->addListener(this);
-	//PhysicsSystem::get()->initialize();
 	RenderSystem* renderSystem = GraphicsEngine::get()->getRenderSystem();
 
 	SceneCameraHandler::get()->initialize();
@@ -56,7 +54,6 @@ void AppWindow::onUpdate()
 	//Window::onUpdate();
 
 	RenderSystem* renderSystem = GraphicsEngine::get()->getRenderSystem();
-//	PhysicsSystem* physicsSystem = PhysicsSystem::get();
 	SceneCameraHandler* cameraHandler = SceneCameraHandler::get();
 	
 	InputSystem::get()->update();
@@ -69,7 +66,6 @@ void AppWindow::onUpdate()
 	int height = rc.bottom - rc.top;
 
 	renderSystem->getImmediateDeviceContext()->setViewPortSize(width, height);
-//	physicsSystem->updateAllPhysicsComponents();
 
 	this->sortedCameras = cameraHandler->getAllCameras();
 	cameraHandler->updateAllCameras();

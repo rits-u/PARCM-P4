@@ -96,20 +96,6 @@ void GameObjectManager::addObject(GameObject* gameObject)
     this->gameObjectTable[gameObject->getName()] = gameObject;
 }
 
-
-void GameObjectManager::createObject(PrimitiveType type, void* shaderByteCode, size_t sizeShader)
-{
-    /*switch (type) {
-        case PrimitiveType::CUBE: {
-            Cube* cubeObject = new Cube(adjustName("Cube"), shaderByteCode, sizeShader);
-            this->addObject(cubeObject);
-            std::cout << "Spawned Cube" << std::endl;
-            break;
-        }
-
-    }*/
-}
-
 void GameObjectManager::deleteObject(GameObject* gameObject)
 {
     for (int i = 0; i < this->gameObjectList.size(); i++) {
@@ -117,14 +103,9 @@ void GameObjectManager::deleteObject(GameObject* gameObject)
             std::cout << "Deleted " << gameObject->getName() << std::endl;
             if (dynamic_cast<InputListener*>(this->gameObjectList[i]))
                 InputSystem::get()->removeListener((InputListener*)this->gameObjectList[i]);
-
-            //PhysicsComponent* p6component = gameObject->getComponent<PhysicsComponent>();
             ComponentList& components = this->gameObjectList[i]->getComponents();
             for (Component* c : components) {
                 if (c) {
-                    /*if (auto* p6component = dynamic_cast<PhysicsComponent*>(c))
-                        PhysicsSystem::get()->removePhysicsComponent(p6component);*/
-
                     delete c;
                     c = nullptr;
                 }
@@ -178,28 +159,6 @@ GameObject* GameObjectManager::getSelectedObject()
 {
     return this->selectedObject;
 }
-//
-//void GameObjectManager::createModel(String model, void* shaderByteCode, size_t sizeShader)
-//{
-//    if (model == "Teapot") {
-//        MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\teapot.obj");
-//        Model* model = new Model(adjustName("Teapot"), mesh, shaderByteCode, sizeShader);
-//        this->addObject(model);
-//        std::cout << "Spawned Teapot" << std::endl;
-//    }
-//    else if (model == "Bunny") {
-//        MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\bunny.obj");
-//        Model* model = new Model(adjustName("Bunny"), mesh, shaderByteCode, sizeShader);
-//        this->addObject(model);
-//        std::cout << "Spawned Bunny" << std::endl;
-//    }
-//    else if (model == "Armadillo") {
-//        MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\armadillo.obj");
-//        Model* model = new Model(adjustName("Armadillo"), mesh, shaderByteCode, sizeShader);
-//        this->addObject(model);
-//        std::cout << "Spawned Bunny" << std::endl;
-//    }
-//}
 
 string GameObjectManager::adjustName(string name)
 {

@@ -2,32 +2,15 @@
 #include "Window.h"
 #include "GraphicsEngine.h"
 #include "SwapChain.h"
-#include "DeviceContext.h"
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
-#include "ConstantBuffer.h"
-#include "VertexShader.h"
-#include "PixelShader.h"
-
 #include "InputListener.h"
-#include "Point.h"
-
-//#include "Cube.h"
-//#include "Plane.h"
-//#include "Circle.h"
 #include "Camera.h"
+#include "UIManager.h"
+#include "GameObjectManager.h"
+#include "Types.h"
 
 #include <iostream>
 #include <vector>
 #include <random>
-
-#include "UIManager.h"
-#include "GameObjectManager.h"
-
-#include "Types.h"
-
-//#include <reactphysics3d/reactphysics3d.h>
-//using namespace reactphysics3d;
 
 class AppWindow : public Window, public InputListener
 {

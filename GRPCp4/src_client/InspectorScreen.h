@@ -15,7 +15,6 @@ private:
 	void displayObjectName();
 	void displayTransform();
 	void displayTextureSection();
-//	void displayPhysicsComponent();
 
 private:
 	bool isRenaming = false;
