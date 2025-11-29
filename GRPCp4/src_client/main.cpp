@@ -1,5 +1,5 @@
-#include "AppWindow.h"
-#include "InputSystem.h"
+#include "App/AppWindow.h"
+#include "GameEngine/InputSystem/InputSystem.h"
 
 int main() 
 {

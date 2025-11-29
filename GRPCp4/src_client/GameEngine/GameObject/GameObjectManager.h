@@ -1,0 +1,57 @@
+#pragma once
+#include <string>
+#include <vector>
+#include <unordered_map>
+
+#include "GameObject.h"
+//#include "Cube.h"
+//#include "Plane.h"
+//#include "Model.h"
+#include "../Camera/Camera.h"
+
+#include "../GraphicsEngine/GraphicsEngine.h"
+#include "../InputSystem/InputSystem.h"
+#include "Types.h"
+
+#include "../Component/MeshRenderer.h"
+
+
+
+class GameObjectManager
+{
+public:
+	static GameObjectManager* get();
+	static void initialize();
+	static void destroy();
+
+	GameObject* findObjectByName(string name);
+	List getAllObjects();
+	int activeObjects();
+	void renderAllPerCamera(std::vector<Camera*> cameras, int width, int height, SwapChainPtr sc);
+	void addObject(GameObject* gameObject);
+	//void createObject(PrimitiveType type, void* shaderByteCode, size_t sizeShader);
+	void deleteObject(GameObject* gameObject);
+	void deleteObjectByName(string name);
+	void clearSelectedObject();
+	void setSelectedObject(string name);
+	void setSelectedObject(GameObject* gameObject);
+	GameObject* getSelectedObject();
+
+	string adjustName(string name);
+	void processDeletions();
+
+private:
+	GameObjectManager();
+	~GameObjectManager();
+	GameObjectManager(GameObjectManager const&) {};
+	GameObjectManager& operator=(GameObjectManager const&) {};
+	static GameObjectManager* sharedInstance;
+
+private:
+	List gameObjectList;
+	HashTable gameObjectTable;
+	GameObject* selectedObject;
+	List pendingDeletion;
+
+};
+
