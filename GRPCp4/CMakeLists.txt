@@ -26,12 +26,19 @@ file(GLOB_RECURSE PROTO_HEADERS "${PROTO_SRC_PATH}/*.h")
 #)
 
 
+
+
 add_library(DirectXTexLib STATIC IMPORTED)
 set_target_properties(DirectXTexLib PROPERTIES
     IMPORTED_LOCATION "E:/Programs/vcpkg/vcpkg/installed/x64-windows/lib/DirectXTex.lib"
     INTERFACE_INCLUDE_DIRECTORIES "E:/Programs/vcpkg/vcpkg/installed/x64-windows/include"
 )
 
+
+#add_library(proto
+#    hello.pb.cc
+#    hello.grpc.pb.cc
+#)
 
 # setup the exe of the server
 set (SERVER_SRC_PATH ${CMAKE_CURRENT_SOURCE_DIR}/src_server
