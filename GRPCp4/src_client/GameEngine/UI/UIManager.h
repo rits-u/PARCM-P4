@@ -8,6 +8,7 @@
 #include "Screens/MenuToolbar.h"
 #include "Screens/InspectorScreen.h"
 #include "Screens/HierarchyScreen.h"
+#include "Screens/SceneSelector.h"
 
 #include "../GraphicsEngine/RenderSystem/RenderSystem.h"
 #include "../GraphicsEngine/GraphicsEngine.h"

@@ -1,4 +1,5 @@
 #pragma once
+
 #include "../GraphicsEngine/ResourceManager/Resource.h"
 #include <d3d11.h>
 #include <Windows.h>
@@ -12,6 +13,7 @@ class Mesh : public Resource
 {
 public:
 	Mesh(const wchar_t* fullPath);
+	Mesh(const void* objData, size_t objSize);
 	~Mesh();
 
 
@@ -23,6 +25,7 @@ private:
 	std::vector<unsigned int> m_indices;
 
 private:
+	void loadObjFromStream(std::string objStream);
 	std::string WStringToString(const std::wstring& wstr);
 
 private:

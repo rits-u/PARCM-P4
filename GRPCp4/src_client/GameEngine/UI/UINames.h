@@ -18,4 +18,5 @@ public:
 	const String CREDITS_SCREEN = "CREDITS_SCREEN";
 	const String COLOR_PICKER = "COLOR_PICKER";
 	const String MENU_TOOLBAR = "MENU_TOOLBAR";
+	const String SCENE_SELECTOR = "SCENE_SELECTOR";
 };

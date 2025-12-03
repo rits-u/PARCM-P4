@@ -4,7 +4,7 @@
 #include <grpcpp/grpcpp.h>
 #include "../proto/generated/hello.grpc.pb.h"
 
-#include "HelloServer.h"
+#include "SceneServer.h"
 
 using namespace std;
 
@@ -51,7 +51,10 @@ using namespace std;
 
 int main()
 {
-	HelloServer server;
+	//HelloServer server;
+	//server.RunServer();
+
+	SceneServer server;
 	server.RunServer();
 
 //	asdasd

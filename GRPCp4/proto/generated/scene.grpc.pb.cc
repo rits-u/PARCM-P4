@@ -22,6 +22,7 @@
 
 static const char* SceneGRPC_method_names[] = {
   "/SceneGRPC/GetScene",
+  "/SceneGRPC/StreamObjFile",
 };
 
 std::unique_ptr< SceneGRPC::Stub> SceneGRPC::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -32,6 +33,7 @@ std::unique_ptr< SceneGRPC::Stub> SceneGRPC::NewStub(const std::shared_ptr< ::gr
 
 SceneGRPC::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_GetScene_(SceneGRPC_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StreamObjFile_(SceneGRPC_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   {}
 
 ::grpc::Status SceneGRPC::Stub::GetScene(::grpc::ClientContext* context, const ::SceneRequest& request, ::SceneResponse* response) {
@@ -57,6 +59,22 @@ void SceneGRPC::Stub::async::GetScene(::grpc::ClientContext* context, const ::Sc
   return result;
 }
 
+::grpc::ClientReader< ::ObjChunk>* SceneGRPC::Stub::StreamObjFileRaw(::grpc::ClientContext* context, const ::ObjFileRequest& request) {
+  return ::grpc::internal::ClientReaderFactory< ::ObjChunk>::Create(channel_.get(), rpcmethod_StreamObjFile_, context, request);
+}
+
+void SceneGRPC::Stub::async::StreamObjFile(::grpc::ClientContext* context, const ::ObjFileRequest* request, ::grpc::ClientReadReactor< ::ObjChunk>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::ObjChunk>::Create(stub_->channel_.get(), stub_->rpcmethod_StreamObjFile_, context, request, reactor);
+}
+
+::grpc::ClientAsyncReader< ::ObjChunk>* SceneGRPC::Stub::AsyncStreamObjFileRaw(::grpc::ClientContext* context, const ::ObjFileRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::ObjChunk>::Create(channel_.get(), cq, rpcmethod_StreamObjFile_, context, request, true, tag);
+}
+
+::grpc::ClientAsyncReader< ::ObjChunk>* SceneGRPC::Stub::PrepareAsyncStreamObjFileRaw(::grpc::ClientContext* context, const ::ObjFileRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::ObjChunk>::Create(channel_.get(), cq, rpcmethod_StreamObjFile_, context, request, false, nullptr);
+}
+
 SceneGRPC::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       SceneGRPC_method_names[0],
@@ -68,6 +86,16 @@ SceneGRPC::Service::Service() {
              ::SceneResponse* resp) {
                return service->GetScene(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      SceneGRPC_method_names[1],
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< SceneGRPC::Service, ::ObjFileRequest, ::ObjChunk>(
+          [](SceneGRPC::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::ObjFileRequest* req,
+             ::grpc::ServerWriter<::ObjChunk>* writer) {
+               return service->StreamObjFile(ctx, req, writer);
+             }, this)));
 }
 
 SceneGRPC::Service::~Service() {
@@ -77,6 +105,13 @@ SceneGRPC::Service::~Service() {
   (void) context;
   (void) request;
   (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status SceneGRPC::Service::StreamObjFile(::grpc::ServerContext* context, const ::ObjFileRequest* request, ::grpc::ServerWriter< ::ObjChunk>* writer) {
+  (void) context;
+  (void) request;
+  (void) writer;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

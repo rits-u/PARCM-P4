@@ -57,6 +57,12 @@ extern ModelDefaultTypeInternal _Model_default_instance_;
 class Obj;
 struct ObjDefaultTypeInternal;
 extern ObjDefaultTypeInternal _Obj_default_instance_;
+class ObjChunk;
+struct ObjChunkDefaultTypeInternal;
+extern ObjChunkDefaultTypeInternal _ObjChunk_default_instance_;
+class ObjFileRequest;
+struct ObjFileRequestDefaultTypeInternal;
+extern ObjFileRequestDefaultTypeInternal _ObjFileRequest_default_instance_;
 class SceneRequest;
 struct SceneRequestDefaultTypeInternal;
 extern SceneRequestDefaultTypeInternal _SceneRequest_default_instance_;
@@ -66,9 +72,9 @@ extern SceneResponseDefaultTypeInternal _SceneResponse_default_instance_;
 class Transform;
 struct TransformDefaultTypeInternal;
 extern TransformDefaultTypeInternal _Transform_default_instance_;
-class Vector3D;
-struct Vector3DDefaultTypeInternal;
-extern Vector3DDefaultTypeInternal _Vector3D_default_instance_;
+class Vector3;
+struct Vector3DefaultTypeInternal;
+extern Vector3DefaultTypeInternal _Vector3_default_instance_;
 namespace google {
 namespace protobuf {
 }  // namespace protobuf
@@ -80,31 +86,31 @@ namespace protobuf {
 
 // -------------------------------------------------------------------
 
-class Vector3D final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:Vector3D) */ {
+class Vector3 final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:Vector3) */ {
  public:
-  inline Vector3D() : Vector3D(nullptr) {}
-  ~Vector3D() PROTOBUF_FINAL;
+  inline Vector3() : Vector3(nullptr) {}
+  ~Vector3() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Vector3D* msg, std::destroying_delete_t) {
+  void operator delete(Vector3* msg, std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Vector3D));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Vector3));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Vector3D(
+  explicit PROTOBUF_CONSTEXPR Vector3(
       ::google::protobuf::internal::ConstantInitialized);
 
-  inline Vector3D(const Vector3D& from) : Vector3D(nullptr, from) {}
-  inline Vector3D(Vector3D&& from) noexcept
-      : Vector3D(nullptr, std::move(from)) {}
-  inline Vector3D& operator=(const Vector3D& from) {
+  inline Vector3(const Vector3& from) : Vector3(nullptr, from) {}
+  inline Vector3(Vector3&& from) noexcept
+      : Vector3(nullptr, std::move(from)) {}
+  inline Vector3& operator=(const Vector3& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Vector3D& operator=(Vector3D&& from) noexcept {
+  inline Vector3& operator=(Vector3&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -132,16 +138,16 @@ class Vector3D final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Vector3D& default_instance() {
+  static const Vector3& default_instance() {
     return *internal_default_instance();
   }
-  static inline const Vector3D* internal_default_instance() {
-    return reinterpret_cast<const Vector3D*>(
-        &_Vector3D_default_instance_);
+  static inline const Vector3* internal_default_instance() {
+    return reinterpret_cast<const Vector3*>(
+        &_Vector3_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 0;
-  friend void swap(Vector3D& a, Vector3D& b) { a.Swap(&b); }
-  inline void Swap(Vector3D* other) {
+  friend void swap(Vector3& a, Vector3& b) { a.Swap(&b); }
+  inline void Swap(Vector3* other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -149,7 +155,7 @@ class Vector3D final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Vector3D* other) {
+  void UnsafeArenaSwap(Vector3* other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -157,13 +163,13 @@ class Vector3D final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  Vector3D* New(::google::protobuf::Arena* arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Vector3D>(arena);
+  Vector3* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Vector3>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Vector3D& from);
+  void CopyFrom(const Vector3& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Vector3D& from) { Vector3D::MergeImpl(*this, from); }
+  void MergeFrom(const Vector3& from) { Vector3::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(
@@ -200,18 +206,18 @@ class Vector3D final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(Vector3D* other);
+  void InternalSwap(Vector3* other);
  private:
   template <typename T>
   friend ::absl::string_view(
       ::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "Vector3D"; }
+  static ::absl::string_view FullMessageName() { return "Vector3"; }
 
  protected:
-  explicit Vector3D(::google::protobuf::Arena* arena);
-  Vector3D(::google::protobuf::Arena* arena, const Vector3D& from);
-  Vector3D(::google::protobuf::Arena* arena, Vector3D&& from) noexcept
-      : Vector3D(arena) {
+  explicit Vector3(::google::protobuf::Arena* arena);
+  Vector3(::google::protobuf::Arena* arena, const Vector3& from);
+  Vector3(::google::protobuf::Arena* arena, Vector3&& from) noexcept
+      : Vector3(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
@@ -260,7 +266,7 @@ class Vector3D final : public ::google::protobuf::Message
   void _internal_set_z(float value);
 
   public:
-  // @@protoc_insertion_point(class_scope:Vector3D)
+  // @@protoc_insertion_point(class_scope:Vector3)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -282,7 +288,7 @@ class Vector3D final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena);
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
-                          const Vector3D& from_msg);
+                          const Vector3& from_msg);
     float x_;
     float y_;
     float z_;
@@ -476,6 +482,392 @@ class SceneRequest final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const SceneRequest& from_msg);
     ::int32_t sceneid_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_scene_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ObjFileRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:ObjFileRequest) */ {
+ public:
+  inline ObjFileRequest() : ObjFileRequest(nullptr) {}
+  ~ObjFileRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(ObjFileRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ObjFileRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ObjFileRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline ObjFileRequest(const ObjFileRequest& from) : ObjFileRequest(nullptr, from) {}
+  inline ObjFileRequest(ObjFileRequest&& from) noexcept
+      : ObjFileRequest(nullptr, std::move(from)) {}
+  inline ObjFileRequest& operator=(const ObjFileRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ObjFileRequest& operator=(ObjFileRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ObjFileRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ObjFileRequest* internal_default_instance() {
+    return reinterpret_cast<const ObjFileRequest*>(
+        &_ObjFileRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(ObjFileRequest& a, ObjFileRequest& b) { a.Swap(&b); }
+  inline void Swap(ObjFileRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ObjFileRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ObjFileRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<ObjFileRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ObjFileRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const ObjFileRequest& from) { ObjFileRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(ObjFileRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "ObjFileRequest"; }
+
+ protected:
+  explicit ObjFileRequest(::google::protobuf::Arena* arena);
+  ObjFileRequest(::google::protobuf::Arena* arena, const ObjFileRequest& from);
+  ObjFileRequest(::google::protobuf::Arena* arena, ObjFileRequest&& from) noexcept
+      : ObjFileRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kModelIDFieldNumber = 1,
+  };
+  // int32 modelID = 1;
+  void clear_modelid() ;
+  ::int32_t modelid() const;
+  void set_modelid(::int32_t value);
+
+  private:
+  ::int32_t _internal_modelid() const;
+  void _internal_set_modelid(::int32_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:ObjFileRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const ObjFileRequest& from_msg);
+    ::int32_t modelid_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_scene_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ObjChunk final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:ObjChunk) */ {
+ public:
+  inline ObjChunk() : ObjChunk(nullptr) {}
+  ~ObjChunk() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(ObjChunk* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(ObjChunk));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR ObjChunk(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline ObjChunk(const ObjChunk& from) : ObjChunk(nullptr, from) {}
+  inline ObjChunk(ObjChunk&& from) noexcept
+      : ObjChunk(nullptr, std::move(from)) {}
+  inline ObjChunk& operator=(const ObjChunk& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ObjChunk& operator=(ObjChunk&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ObjChunk& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ObjChunk* internal_default_instance() {
+    return reinterpret_cast<const ObjChunk*>(
+        &_ObjChunk_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 7;
+  friend void swap(ObjChunk& a, ObjChunk& b) { a.Swap(&b); }
+  inline void Swap(ObjChunk* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ObjChunk* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ObjChunk* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<ObjChunk>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const ObjChunk& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const ObjChunk& from) { ObjChunk::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(ObjChunk* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "ObjChunk"; }
+
+ protected:
+  explicit ObjChunk(::google::protobuf::Arena* arena);
+  ObjChunk(::google::protobuf::Arena* arena, const ObjChunk& from);
+  ObjChunk(::google::protobuf::Arena* arena, ObjChunk&& from) noexcept
+      : ObjChunk(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // bytes data = 1;
+  void clear_data() ;
+  const std::string& data() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_data(Arg_&& arg, Args_... args);
+  std::string* mutable_data();
+  PROTOBUF_NODISCARD std::string* release_data();
+  void set_allocated_data(std::string* value);
+
+  private:
+  const std::string& _internal_data() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_data(
+      const std::string& value);
+  std::string* _internal_mutable_data();
+
+  public:
+  // @@protoc_insertion_point(class_scope:ObjChunk)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 1, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const ObjChunk& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr data_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -848,49 +1240,49 @@ class Transform final : public ::google::protobuf::Message
     kRotationFieldNumber = 2,
     kScaleFieldNumber = 3,
   };
-  // .Vector3D position = 1;
+  // .Vector3 position = 1;
   bool has_position() const;
   void clear_position() ;
-  const ::Vector3D& position() const;
-  PROTOBUF_NODISCARD ::Vector3D* release_position();
-  ::Vector3D* mutable_position();
-  void set_allocated_position(::Vector3D* value);
-  void unsafe_arena_set_allocated_position(::Vector3D* value);
-  ::Vector3D* unsafe_arena_release_position();
+  const ::Vector3& position() const;
+  PROTOBUF_NODISCARD ::Vector3* release_position();
+  ::Vector3* mutable_position();
+  void set_allocated_position(::Vector3* value);
+  void unsafe_arena_set_allocated_position(::Vector3* value);
+  ::Vector3* unsafe_arena_release_position();
 
   private:
-  const ::Vector3D& _internal_position() const;
-  ::Vector3D* _internal_mutable_position();
+  const ::Vector3& _internal_position() const;
+  ::Vector3* _internal_mutable_position();
 
   public:
-  // .Vector3D rotation = 2;
+  // .Vector3 rotation = 2;
   bool has_rotation() const;
   void clear_rotation() ;
-  const ::Vector3D& rotation() const;
-  PROTOBUF_NODISCARD ::Vector3D* release_rotation();
-  ::Vector3D* mutable_rotation();
-  void set_allocated_rotation(::Vector3D* value);
-  void unsafe_arena_set_allocated_rotation(::Vector3D* value);
-  ::Vector3D* unsafe_arena_release_rotation();
+  const ::Vector3& rotation() const;
+  PROTOBUF_NODISCARD ::Vector3* release_rotation();
+  ::Vector3* mutable_rotation();
+  void set_allocated_rotation(::Vector3* value);
+  void unsafe_arena_set_allocated_rotation(::Vector3* value);
+  ::Vector3* unsafe_arena_release_rotation();
 
   private:
-  const ::Vector3D& _internal_rotation() const;
-  ::Vector3D* _internal_mutable_rotation();
+  const ::Vector3& _internal_rotation() const;
+  ::Vector3* _internal_mutable_rotation();
 
   public:
-  // .Vector3D scale = 3;
+  // .Vector3 scale = 3;
   bool has_scale() const;
   void clear_scale() ;
-  const ::Vector3D& scale() const;
-  PROTOBUF_NODISCARD ::Vector3D* release_scale();
-  ::Vector3D* mutable_scale();
-  void set_allocated_scale(::Vector3D* value);
-  void unsafe_arena_set_allocated_scale(::Vector3D* value);
-  ::Vector3D* unsafe_arena_release_scale();
+  const ::Vector3& scale() const;
+  PROTOBUF_NODISCARD ::Vector3* release_scale();
+  ::Vector3* mutable_scale();
+  void set_allocated_scale(::Vector3* value);
+  void unsafe_arena_set_allocated_scale(::Vector3* value);
+  ::Vector3* unsafe_arena_release_scale();
 
   private:
-  const ::Vector3D& _internal_scale() const;
-  ::Vector3D* _internal_mutable_scale();
+  const ::Vector3& _internal_scale() const;
+  ::Vector3* _internal_mutable_scale();
 
   public:
   // @@protoc_insertion_point(class_scope:Transform)
@@ -918,9 +1310,9 @@ class Transform final : public ::google::protobuf::Message
                           const Transform& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::Vector3D* position_;
-    ::Vector3D* rotation_;
-    ::Vector3D* scale_;
+    ::Vector3* position_;
+    ::Vector3* rotation_;
+    ::Vector3* scale_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1074,23 +1466,24 @@ class Model final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kObjectFieldNumber = 2,
+    kModelNameFieldNumber = 2,
     kTransformFieldNumber = 3,
     kModelIDFieldNumber = 1,
   };
-  // .Obj object = 2;
-  bool has_object() const;
-  void clear_object() ;
-  const ::Obj& object() const;
-  PROTOBUF_NODISCARD ::Obj* release_object();
-  ::Obj* mutable_object();
-  void set_allocated_object(::Obj* value);
-  void unsafe_arena_set_allocated_object(::Obj* value);
-  ::Obj* unsafe_arena_release_object();
+  // string modelName = 2;
+  void clear_modelname() ;
+  const std::string& modelname() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_modelname(Arg_&& arg, Args_... args);
+  std::string* mutable_modelname();
+  PROTOBUF_NODISCARD std::string* release_modelname();
+  void set_allocated_modelname(std::string* value);
 
   private:
-  const ::Obj& _internal_object() const;
-  ::Obj* _internal_mutable_object();
+  const std::string& _internal_modelname() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_modelname(
+      const std::string& value);
+  std::string* _internal_mutable_modelname();
 
   public:
   // .Transform transform = 3;
@@ -1123,8 +1516,8 @@ class Model final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 2,
-      0, 2>
+      2, 3, 1,
+      23, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -1143,7 +1536,7 @@ class Model final : public ::google::protobuf::Message
                           const Model& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::Obj* object_;
+    ::google::protobuf::internal::ArenaStringPtr modelname_;
     ::Transform* transform_;
     ::int32_t modelid_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1301,6 +1694,7 @@ class SceneResponse final : public ::google::protobuf::Message
   enum : int {
     kModelsFieldNumber = 2,
     kSceneNameFieldNumber = 1,
+    kMsgFieldNumber = 3,
   };
   // repeated .Model models = 2;
   int models_size() const;
@@ -1335,13 +1729,29 @@ class SceneResponse final : public ::google::protobuf::Message
   std::string* _internal_mutable_scenename();
 
   public:
+  // string msg = 3;
+  void clear_msg() ;
+  const std::string& msg() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_msg(Arg_&& arg, Args_... args);
+  std::string* mutable_msg();
+  PROTOBUF_NODISCARD std::string* release_msg();
+  void set_allocated_msg(std::string* value);
+
+  private:
+  const std::string& _internal_msg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_msg(
+      const std::string& value);
+  std::string* _internal_mutable_msg();
+
+  public:
   // @@protoc_insertion_point(class_scope:SceneResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 2, 1,
-      31, 2>
+      2, 3, 1,
+      34, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -1360,6 +1770,7 @@ class SceneResponse final : public ::google::protobuf::Message
                           const SceneResponse& from_msg);
     ::google::protobuf::RepeatedPtrField< ::Model > models_;
     ::google::protobuf::internal::ArenaStringPtr scenename_;
+    ::google::protobuf::internal::ArenaStringPtr msg_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -1381,70 +1792,70 @@ class SceneResponse final : public ::google::protobuf::Message
 #endif  // __GNUC__
 // -------------------------------------------------------------------
 
-// Vector3D
+// Vector3
 
 // float x = 1;
-inline void Vector3D::clear_x() {
+inline void Vector3::clear_x() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.x_ = 0;
 }
-inline float Vector3D::x() const {
-  // @@protoc_insertion_point(field_get:Vector3D.x)
+inline float Vector3::x() const {
+  // @@protoc_insertion_point(field_get:Vector3.x)
   return _internal_x();
 }
-inline void Vector3D::set_x(float value) {
+inline void Vector3::set_x(float value) {
   _internal_set_x(value);
-  // @@protoc_insertion_point(field_set:Vector3D.x)
+  // @@protoc_insertion_point(field_set:Vector3.x)
 }
-inline float Vector3D::_internal_x() const {
+inline float Vector3::_internal_x() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.x_;
 }
-inline void Vector3D::_internal_set_x(float value) {
+inline void Vector3::_internal_set_x(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.x_ = value;
 }
 
 // float y = 2;
-inline void Vector3D::clear_y() {
+inline void Vector3::clear_y() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.y_ = 0;
 }
-inline float Vector3D::y() const {
-  // @@protoc_insertion_point(field_get:Vector3D.y)
+inline float Vector3::y() const {
+  // @@protoc_insertion_point(field_get:Vector3.y)
   return _internal_y();
 }
-inline void Vector3D::set_y(float value) {
+inline void Vector3::set_y(float value) {
   _internal_set_y(value);
-  // @@protoc_insertion_point(field_set:Vector3D.y)
+  // @@protoc_insertion_point(field_set:Vector3.y)
 }
-inline float Vector3D::_internal_y() const {
+inline float Vector3::_internal_y() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.y_;
 }
-inline void Vector3D::_internal_set_y(float value) {
+inline void Vector3::_internal_set_y(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.y_ = value;
 }
 
 // float z = 3;
-inline void Vector3D::clear_z() {
+inline void Vector3::clear_z() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.z_ = 0;
 }
-inline float Vector3D::z() const {
-  // @@protoc_insertion_point(field_get:Vector3D.z)
+inline float Vector3::z() const {
+  // @@protoc_insertion_point(field_get:Vector3.z)
   return _internal_z();
 }
-inline void Vector3D::set_z(float value) {
+inline void Vector3::set_z(float value) {
   _internal_set_z(value);
-  // @@protoc_insertion_point(field_set:Vector3D.z)
+  // @@protoc_insertion_point(field_set:Vector3.z)
 }
-inline float Vector3D::_internal_z() const {
+inline float Vector3::_internal_z() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.z_;
 }
-inline void Vector3D::_internal_set_z(float value) {
+inline void Vector3::_internal_set_z(float value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.z_ = value;
 }
@@ -1453,7 +1864,7 @@ inline void Vector3D::_internal_set_z(float value) {
 
 // Transform
 
-// .Vector3D position = 1;
+// .Vector3 position = 1;
 inline bool Transform::has_position() const {
   bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.position_ != nullptr);
@@ -1464,21 +1875,21 @@ inline void Transform::clear_position() {
   if (_impl_.position_ != nullptr) _impl_.position_->Clear();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::Vector3D& Transform::_internal_position() const {
+inline const ::Vector3& Transform::_internal_position() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::Vector3D* p = _impl_.position_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Vector3D&>(::_Vector3D_default_instance_);
+  const ::Vector3* p = _impl_.position_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Vector3&>(::_Vector3_default_instance_);
 }
-inline const ::Vector3D& Transform::position() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::Vector3& Transform::position() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:Transform.position)
   return _internal_position();
 }
-inline void Transform::unsafe_arena_set_allocated_position(::Vector3D* value) {
+inline void Transform::unsafe_arena_set_allocated_position(::Vector3* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.position_);
   }
-  _impl_.position_ = reinterpret_cast<::Vector3D*>(value);
+  _impl_.position_ = reinterpret_cast<::Vector3*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
   } else {
@@ -1486,11 +1897,11 @@ inline void Transform::unsafe_arena_set_allocated_position(::Vector3D* value) {
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Transform.position)
 }
-inline ::Vector3D* Transform::release_position() {
+inline ::Vector3* Transform::release_position() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Vector3D* released = _impl_.position_;
+  ::Vector3* released = _impl_.position_;
   _impl_.position_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -1505,30 +1916,30 @@ inline ::Vector3D* Transform::release_position() {
   }
   return released;
 }
-inline ::Vector3D* Transform::unsafe_arena_release_position() {
+inline ::Vector3* Transform::unsafe_arena_release_position() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:Transform.position)
 
   _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Vector3D* temp = _impl_.position_;
+  ::Vector3* temp = _impl_.position_;
   _impl_.position_ = nullptr;
   return temp;
 }
-inline ::Vector3D* Transform::_internal_mutable_position() {
+inline ::Vector3* Transform::_internal_mutable_position() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.position_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::Vector3D>(GetArena());
-    _impl_.position_ = reinterpret_cast<::Vector3D*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::Vector3>(GetArena());
+    _impl_.position_ = reinterpret_cast<::Vector3*>(p);
   }
   return _impl_.position_;
 }
-inline ::Vector3D* Transform::mutable_position() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::Vector3* Transform::mutable_position() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000001u;
-  ::Vector3D* _msg = _internal_mutable_position();
+  ::Vector3* _msg = _internal_mutable_position();
   // @@protoc_insertion_point(field_mutable:Transform.position)
   return _msg;
 }
-inline void Transform::set_allocated_position(::Vector3D* value) {
+inline void Transform::set_allocated_position(::Vector3* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -1545,11 +1956,11 @@ inline void Transform::set_allocated_position(::Vector3D* value) {
     _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
-  _impl_.position_ = reinterpret_cast<::Vector3D*>(value);
+  _impl_.position_ = reinterpret_cast<::Vector3*>(value);
   // @@protoc_insertion_point(field_set_allocated:Transform.position)
 }
 
-// .Vector3D rotation = 2;
+// .Vector3 rotation = 2;
 inline bool Transform::has_rotation() const {
   bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.rotation_ != nullptr);
@@ -1560,21 +1971,21 @@ inline void Transform::clear_rotation() {
   if (_impl_.rotation_ != nullptr) _impl_.rotation_->Clear();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const ::Vector3D& Transform::_internal_rotation() const {
+inline const ::Vector3& Transform::_internal_rotation() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::Vector3D* p = _impl_.rotation_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Vector3D&>(::_Vector3D_default_instance_);
+  const ::Vector3* p = _impl_.rotation_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Vector3&>(::_Vector3_default_instance_);
 }
-inline const ::Vector3D& Transform::rotation() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::Vector3& Transform::rotation() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:Transform.rotation)
   return _internal_rotation();
 }
-inline void Transform::unsafe_arena_set_allocated_rotation(::Vector3D* value) {
+inline void Transform::unsafe_arena_set_allocated_rotation(::Vector3* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.rotation_);
   }
-  _impl_.rotation_ = reinterpret_cast<::Vector3D*>(value);
+  _impl_.rotation_ = reinterpret_cast<::Vector3*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
   } else {
@@ -1582,11 +1993,11 @@ inline void Transform::unsafe_arena_set_allocated_rotation(::Vector3D* value) {
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Transform.rotation)
 }
-inline ::Vector3D* Transform::release_rotation() {
+inline ::Vector3* Transform::release_rotation() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::Vector3D* released = _impl_.rotation_;
+  ::Vector3* released = _impl_.rotation_;
   _impl_.rotation_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -1601,30 +2012,30 @@ inline ::Vector3D* Transform::release_rotation() {
   }
   return released;
 }
-inline ::Vector3D* Transform::unsafe_arena_release_rotation() {
+inline ::Vector3* Transform::unsafe_arena_release_rotation() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:Transform.rotation)
 
   _impl_._has_bits_[0] &= ~0x00000002u;
-  ::Vector3D* temp = _impl_.rotation_;
+  ::Vector3* temp = _impl_.rotation_;
   _impl_.rotation_ = nullptr;
   return temp;
 }
-inline ::Vector3D* Transform::_internal_mutable_rotation() {
+inline ::Vector3* Transform::_internal_mutable_rotation() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.rotation_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::Vector3D>(GetArena());
-    _impl_.rotation_ = reinterpret_cast<::Vector3D*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::Vector3>(GetArena());
+    _impl_.rotation_ = reinterpret_cast<::Vector3*>(p);
   }
   return _impl_.rotation_;
 }
-inline ::Vector3D* Transform::mutable_rotation() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::Vector3* Transform::mutable_rotation() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000002u;
-  ::Vector3D* _msg = _internal_mutable_rotation();
+  ::Vector3* _msg = _internal_mutable_rotation();
   // @@protoc_insertion_point(field_mutable:Transform.rotation)
   return _msg;
 }
-inline void Transform::set_allocated_rotation(::Vector3D* value) {
+inline void Transform::set_allocated_rotation(::Vector3* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -1641,11 +2052,11 @@ inline void Transform::set_allocated_rotation(::Vector3D* value) {
     _impl_._has_bits_[0] &= ~0x00000002u;
   }
 
-  _impl_.rotation_ = reinterpret_cast<::Vector3D*>(value);
+  _impl_.rotation_ = reinterpret_cast<::Vector3*>(value);
   // @@protoc_insertion_point(field_set_allocated:Transform.rotation)
 }
 
-// .Vector3D scale = 3;
+// .Vector3 scale = 3;
 inline bool Transform::has_scale() const {
   bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.scale_ != nullptr);
@@ -1656,21 +2067,21 @@ inline void Transform::clear_scale() {
   if (_impl_.scale_ != nullptr) _impl_.scale_->Clear();
   _impl_._has_bits_[0] &= ~0x00000004u;
 }
-inline const ::Vector3D& Transform::_internal_scale() const {
+inline const ::Vector3& Transform::_internal_scale() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::Vector3D* p = _impl_.scale_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Vector3D&>(::_Vector3D_default_instance_);
+  const ::Vector3* p = _impl_.scale_;
+  return p != nullptr ? *p : reinterpret_cast<const ::Vector3&>(::_Vector3_default_instance_);
 }
-inline const ::Vector3D& Transform::scale() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::Vector3& Transform::scale() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:Transform.scale)
   return _internal_scale();
 }
-inline void Transform::unsafe_arena_set_allocated_scale(::Vector3D* value) {
+inline void Transform::unsafe_arena_set_allocated_scale(::Vector3* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.scale_);
   }
-  _impl_.scale_ = reinterpret_cast<::Vector3D*>(value);
+  _impl_.scale_ = reinterpret_cast<::Vector3*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000004u;
   } else {
@@ -1678,11 +2089,11 @@ inline void Transform::unsafe_arena_set_allocated_scale(::Vector3D* value) {
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Transform.scale)
 }
-inline ::Vector3D* Transform::release_scale() {
+inline ::Vector3* Transform::release_scale() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000004u;
-  ::Vector3D* released = _impl_.scale_;
+  ::Vector3* released = _impl_.scale_;
   _impl_.scale_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -1697,30 +2108,30 @@ inline ::Vector3D* Transform::release_scale() {
   }
   return released;
 }
-inline ::Vector3D* Transform::unsafe_arena_release_scale() {
+inline ::Vector3* Transform::unsafe_arena_release_scale() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:Transform.scale)
 
   _impl_._has_bits_[0] &= ~0x00000004u;
-  ::Vector3D* temp = _impl_.scale_;
+  ::Vector3* temp = _impl_.scale_;
   _impl_.scale_ = nullptr;
   return temp;
 }
-inline ::Vector3D* Transform::_internal_mutable_scale() {
+inline ::Vector3* Transform::_internal_mutable_scale() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.scale_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::Vector3D>(GetArena());
-    _impl_.scale_ = reinterpret_cast<::Vector3D*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::Vector3>(GetArena());
+    _impl_.scale_ = reinterpret_cast<::Vector3*>(p);
   }
   return _impl_.scale_;
 }
-inline ::Vector3D* Transform::mutable_scale() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline ::Vector3* Transform::mutable_scale() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000004u;
-  ::Vector3D* _msg = _internal_mutable_scale();
+  ::Vector3* _msg = _internal_mutable_scale();
   // @@protoc_insertion_point(field_mutable:Transform.scale)
   return _msg;
 }
-inline void Transform::set_allocated_scale(::Vector3D* value) {
+inline void Transform::set_allocated_scale(::Vector3* value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -1737,7 +2148,7 @@ inline void Transform::set_allocated_scale(::Vector3D* value) {
     _impl_._has_bits_[0] &= ~0x00000004u;
   }
 
-  _impl_.scale_ = reinterpret_cast<::Vector3D*>(value);
+  _impl_.scale_ = reinterpret_cast<::Vector3*>(value);
   // @@protoc_insertion_point(field_set_allocated:Transform.scale)
 }
 
@@ -1867,112 +2278,64 @@ inline void Model::_internal_set_modelid(::int32_t value) {
   _impl_.modelid_ = value;
 }
 
-// .Obj object = 2;
-inline bool Model::has_object() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
-  PROTOBUF_ASSUME(!value || _impl_.object_ != nullptr);
-  return value;
-}
-inline void Model::clear_object() {
+// string modelName = 2;
+inline void Model::clear_modelname() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.object_ != nullptr) _impl_.object_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_.modelname_.ClearToEmpty();
 }
-inline const ::Obj& Model::_internal_object() const {
+inline const std::string& Model::modelname() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:Model.modelName)
+  return _internal_modelname();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Model::set_modelname(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.modelname_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:Model.modelName)
+}
+inline std::string* Model::mutable_modelname() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_modelname();
+  // @@protoc_insertion_point(field_mutable:Model.modelName)
+  return _s;
+}
+inline const std::string& Model::_internal_modelname() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::Obj* p = _impl_.object_;
-  return p != nullptr ? *p : reinterpret_cast<const ::Obj&>(::_Obj_default_instance_);
+  return _impl_.modelname_.Get();
 }
-inline const ::Obj& Model::object() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:Model.object)
-  return _internal_object();
-}
-inline void Model::unsafe_arena_set_allocated_object(::Obj* value) {
+inline void Model::_internal_set_modelname(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (GetArena() == nullptr) {
-    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.object_);
-  }
-  _impl_.object_ = reinterpret_cast<::Obj*>(value);
-  if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Model.object)
+  _impl_.modelname_.Set(value, GetArena());
 }
-inline ::Obj* Model::release_object() {
+inline std::string* Model::_internal_mutable_modelname() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Obj* released = _impl_.object_;
-  _impl_.object_ = nullptr;
-  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
-    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
-    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    if (GetArena() == nullptr) {
-      delete old;
-    }
-  } else {
-    if (GetArena() != nullptr) {
-      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
-    }
-  }
-  return released;
+  return _impl_.modelname_.Mutable( GetArena());
 }
-inline ::Obj* Model::unsafe_arena_release_object() {
+inline std::string* Model::release_modelname() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:Model.object)
-
-  _impl_._has_bits_[0] &= ~0x00000001u;
-  ::Obj* temp = _impl_.object_;
-  _impl_.object_ = nullptr;
-  return temp;
+  // @@protoc_insertion_point(field_release:Model.modelName)
+  return _impl_.modelname_.Release();
 }
-inline ::Obj* Model::_internal_mutable_object() {
+inline void Model::set_allocated_modelname(std::string* value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (_impl_.object_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::Obj>(GetArena());
-    _impl_.object_ = reinterpret_cast<::Obj*>(p);
+  _impl_.modelname_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.modelname_.IsDefault()) {
+    _impl_.modelname_.Set("", GetArena());
   }
-  return _impl_.object_;
-}
-inline ::Obj* Model::mutable_object() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000001u;
-  ::Obj* _msg = _internal_mutable_object();
-  // @@protoc_insertion_point(field_mutable:Model.object)
-  return _msg;
-}
-inline void Model::set_allocated_object(::Obj* value) {
-  ::google::protobuf::Arena* message_arena = GetArena();
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  if (message_arena == nullptr) {
-    delete (_impl_.object_);
-  }
-
-  if (value != nullptr) {
-    ::google::protobuf::Arena* submessage_arena = (value)->GetArena();
-    if (message_arena != submessage_arena) {
-      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
-    }
-    _impl_._has_bits_[0] |= 0x00000001u;
-  } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
-  }
-
-  _impl_.object_ = reinterpret_cast<::Obj*>(value);
-  // @@protoc_insertion_point(field_set_allocated:Model.object)
+  // @@protoc_insertion_point(field_set_allocated:Model.modelName)
 }
 
 // .Transform transform = 3;
 inline bool Model::has_transform() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.transform_ != nullptr);
   return value;
 }
 inline void Model::clear_transform() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.transform_ != nullptr) _impl_.transform_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
 inline const ::Transform& Model::_internal_transform() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -1990,16 +2353,16 @@ inline void Model::unsafe_arena_set_allocated_transform(::Transform* value) {
   }
   _impl_.transform_ = reinterpret_cast<::Transform*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:Model.transform)
 }
 inline ::Transform* Model::release_transform() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
   ::Transform* released = _impl_.transform_;
   _impl_.transform_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -2019,7 +2382,7 @@ inline ::Transform* Model::unsafe_arena_release_transform() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:Model.transform)
 
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
   ::Transform* temp = _impl_.transform_;
   _impl_.transform_ = nullptr;
   return temp;
@@ -2033,7 +2396,7 @@ inline ::Transform* Model::_internal_mutable_transform() {
   return _impl_.transform_;
 }
 inline ::Transform* Model::mutable_transform() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   ::Transform* _msg = _internal_mutable_transform();
   // @@protoc_insertion_point(field_mutable:Model.transform)
   return _msg;
@@ -2050,9 +2413,9 @@ inline void Model::set_allocated_transform(::Transform* value) {
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
 
   _impl_.transform_ = reinterpret_cast<::Transform*>(value);
@@ -2160,6 +2523,54 @@ SceneResponse::_internal_mutable_models() {
   return &_impl_.models_;
 }
 
+// string msg = 3;
+inline void SceneResponse::clear_msg() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.msg_.ClearToEmpty();
+}
+inline const std::string& SceneResponse::msg() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:SceneResponse.msg)
+  return _internal_msg();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void SceneResponse::set_msg(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.msg_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:SceneResponse.msg)
+}
+inline std::string* SceneResponse::mutable_msg() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_msg();
+  // @@protoc_insertion_point(field_mutable:SceneResponse.msg)
+  return _s;
+}
+inline const std::string& SceneResponse::_internal_msg() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.msg_.Get();
+}
+inline void SceneResponse::_internal_set_msg(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.msg_.Set(value, GetArena());
+}
+inline std::string* SceneResponse::_internal_mutable_msg() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.msg_.Mutable( GetArena());
+}
+inline std::string* SceneResponse::release_msg() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:SceneResponse.msg)
+  return _impl_.msg_.Release();
+}
+inline void SceneResponse::set_allocated_msg(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.msg_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.msg_.IsDefault()) {
+    _impl_.msg_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:SceneResponse.msg)
+}
+
 // -------------------------------------------------------------------
 
 // SceneRequest
@@ -2184,6 +2595,84 @@ inline ::int32_t SceneRequest::_internal_sceneid() const {
 inline void SceneRequest::_internal_set_sceneid(::int32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.sceneid_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ObjFileRequest
+
+// int32 modelID = 1;
+inline void ObjFileRequest::clear_modelid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.modelid_ = 0;
+}
+inline ::int32_t ObjFileRequest::modelid() const {
+  // @@protoc_insertion_point(field_get:ObjFileRequest.modelID)
+  return _internal_modelid();
+}
+inline void ObjFileRequest::set_modelid(::int32_t value) {
+  _internal_set_modelid(value);
+  // @@protoc_insertion_point(field_set:ObjFileRequest.modelID)
+}
+inline ::int32_t ObjFileRequest::_internal_modelid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.modelid_;
+}
+inline void ObjFileRequest::_internal_set_modelid(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.modelid_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// ObjChunk
+
+// bytes data = 1;
+inline void ObjChunk::clear_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.ClearToEmpty();
+}
+inline const std::string& ObjChunk::data() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:ObjChunk.data)
+  return _internal_data();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void ObjChunk::set_data(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:ObjChunk.data)
+}
+inline std::string* ObjChunk::mutable_data() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:ObjChunk.data)
+  return _s;
+}
+inline const std::string& ObjChunk::_internal_data() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.data_.Get();
+}
+inline void ObjChunk::_internal_set_data(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.Set(value, GetArena());
+}
+inline std::string* ObjChunk::_internal_mutable_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.data_.Mutable( GetArena());
+}
+inline std::string* ObjChunk::release_data() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:ObjChunk.data)
+  return _impl_.data_.Release();
+}
+inline void ObjChunk::set_allocated_data(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.data_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.data_.IsDefault()) {
+    _impl_.data_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:ObjChunk.data)
 }
 
 #ifdef __GNUC__
