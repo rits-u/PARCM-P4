@@ -3,17 +3,28 @@
 
 grpc::Status SceneServer::GetScene(grpc::ServerContext* context, const SceneRequest* request, SceneResponse* response) {
 	int ID = request->sceneid();
-//	SetSceneProperties(response, ID);
+	SetSceneProperties(response, ID);
+
+	//Model* model = response->add_models();
+	//model->set_modelid(2);
+	//model->set_modelname("Bunny");
+
+
 	response->set_msg("Server got request: Scene " + std::to_string(ID));
 	return grpc::Status::OK;
 }
 
-grpc::Status SceneServer::StreamModelFile(grpc::ServerContext* context, const ObjFileRequest* request, grpc::ServerWriter<ObjChunk>* writer) {
+grpc::Status SceneServer::StreamObjFile(grpc::ServerContext* context, const ObjFileRequest* request, grpc::ServerWriter<ObjChunk>* writer) {
 	std::string path = GetModelPath(request->modelid());
 	std::ifstream file(path, std::ios::binary);
+//	std::cout << "stream attempt from server" << std::endl;
+
 
 	if (!file)
 		return grpc::Status(grpc::StatusCode::NOT_FOUND, "File not found");
+	else {
+		//std::cout << "file found" << std::endl;
+	}
 
 	const size_t chunkSize = 64 * 1024; //64 kb per chunk
 	std::vector<char> buffer(chunkSize);
@@ -52,10 +63,9 @@ void SceneServer::RunServer() {
 std::string SceneServer::GetModelPath(int ID)
 {
 	std::string path;
-	if (ID == 1) {
-		path = "Assets/Meshes/bunny.obj";
+	if (ID == 2) {
+		path = "../../../src_server/Assets/Meshes/bunny.obj";
 	}
-
 
 	return path;
 }
@@ -64,17 +74,11 @@ void SceneServer::SetSceneProperties(SceneResponse* response, int SceneID)
 {
 	switch (SceneID) {
 	case 1:
-		Model * model = response->add_models();
-		model->set_modelid(1);
+		Model* model = response->add_models();
+		model->set_modelid(2);
 		model->set_modelname("Bunny");
 		break;
-
-	//default:
-	//	//Model* model = response->add_models();
-	//	//model->set_modelid(1);
-	//	//model->set_modelname("Bunny");
-	//	break;
 	}
-
+	//std::cout << "scene id: " << SceneID << std::endl;
 
 }

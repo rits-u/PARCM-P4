@@ -8,8 +8,7 @@ class SceneServer final : public SceneGRPC::Service {
 
 public:
 	grpc::Status GetScene(grpc::ServerContext* context, const SceneRequest* request, SceneResponse* response);
-	grpc::Status StreamModelFile(grpc::ServerContext* context, const ObjFileRequest* request, grpc::ServerWriter<ObjChunk>* writer);
-	//StreamModelFile(ModelFileRequest) returns(stream ModelChunk);
+	grpc::Status StreamObjFile(grpc::ServerContext* context, const ObjFileRequest* request, grpc::ServerWriter<ObjChunk>* writer);
 
 	void RunServer();
 

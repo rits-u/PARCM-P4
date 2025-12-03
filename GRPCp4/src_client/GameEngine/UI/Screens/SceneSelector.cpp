@@ -19,7 +19,7 @@ void SceneSelector::draw()
 
 	ImGui::Text("Scene A");
 	if (ImGui::Button("Load")) {
-		SceneManager::get()->LoadScene(10);
+		SceneManager::get()->LoadScene(1);
 		//std::cout << "HASUDHASUHD" << std::endl;
 	}
 	ImGui::End();

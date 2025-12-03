@@ -1,9 +1,6 @@
 #include "SceneLoader.h"
-#include "../Mesh/MeshManager.h"
+//#include "../Mesh/MeshManager.h"
 
-#ifdef byte
-#undef byte
-#endif
 
 SceneLoader::SceneLoader(std::shared_ptr<grpc::Channel> channel) : stub(SceneGRPC::NewStub(channel))
 {
@@ -12,7 +9,8 @@ SceneLoader::SceneLoader(std::shared_ptr<grpc::Channel> channel) : stub(SceneGRP
 
 //client-side
 void SceneLoader::GetScene(const int& SceneID) {
-	//MeshManager* meshManager = 
+	//MeshManager* meshManager = GraphicsEngine::get()->getMeshManager();
+	MeshManager* meshManager = GraphicsEngine::get()->getMeshManager();
 
 	SceneRequest request;
 	request.set_sceneid(SceneID);
@@ -22,21 +20,25 @@ void SceneLoader::GetScene(const int& SceneID) {
 
 	grpc::Status status = stub->GetScene(&context, request, &response);
 
+	//std::cout << "models size: " << response.models_size() << std::endl;
+
 	if (status.ok()) {
-		//for (const auto& model : response.models()) {
-		//	int ID = model.modelid();
-		//	std::string objData = this->StreamObjFile(ID);
+		for (const auto& model : response.models()) {
+			int ID = model.modelid();
+			std::string objData = this->StreamObjFile(ID);
+			std::cout << "data size: " << objData.size() << std::endl;
 
-		//	//Mesh* mesh = 
-		//}
+			MeshPtr mesh = meshManager->createOrGetMesh(ID, objData.data(), objData.size());
+			GameObjectManager* manager = GameObjectManager::get();
+			GameObject* obj = new GameObject(manager->adjustName("Bunny"));
 
-
-		//response.models().size();
-		//std::string objData = this->StreamObjFile()
+			obj->addComponent<MeshRenderer>(mesh);
+			manager->addObject(obj);
+			manager->setSelectedObject(obj);
+			//Mesh* mesh = 
+		}
 
 		std::cout << "Success: " << response.msg() << std::endl;
-		//std::cout << "Success: " << response.status() << std::endl;
-		//std::cout << "Message: " << response.msg() << std::endl;
 	}
 	else {
 		std::cout << "Fail" << std::endl;
@@ -46,7 +48,7 @@ void SceneLoader::GetScene(const int& SceneID) {
 std::string SceneLoader::StreamObjFile(const int& ModelID)
 {
 	ObjFileRequest request;
-	request.modelid();
+	request.set_modelid(ModelID);
 
 	grpc::ClientContext context;
 
