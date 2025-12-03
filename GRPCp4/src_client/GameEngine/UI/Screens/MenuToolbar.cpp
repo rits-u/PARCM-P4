@@ -47,7 +47,9 @@ void MenuToolbar::draw()
                 //GameObjectManager::get()->createModel("Teapot", this->shaderByteCode, this->sizeShader);
                // MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\teapot.obj");
                 //MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\bunny.obj");
-                MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"..\\..\\..\\src_client\\Assets\\Meshes\\bunny.obj");
+               // MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"..\\..\\..\\src_client\\Assets\\Meshes\\bunny.obj");
+                MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"..\\..\\..\\src_server\\Assets\\Meshes\\bunny.obj");
+
                 GameObjectManager* manager = GameObjectManager::get();
                 GameObject* obj = new GameObject(manager->adjustName("Teapot"));
 

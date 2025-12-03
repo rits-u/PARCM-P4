@@ -1,5 +1,6 @@
 #include "ResourceManager.h"
 #include <filesystem>
+#include <iostream>
 
 ResourcePtr ResourceManager::createResourceFromFile(const wchar_t* filePath)
 {
@@ -8,7 +9,7 @@ ResourcePtr ResourceManager::createResourceFromFile(const wchar_t* filePath)
 
     if (it != mapResources.end())
         return it->second;
-
+  //  std::cout << "hello" << std::endl;
     Resource* rawResource = this->createResourceFromFileConcrete(fullPath.c_str());
 
     if (rawResource) {
@@ -16,6 +17,8 @@ ResourcePtr ResourceManager::createResourceFromFile(const wchar_t* filePath)
         mapResources[fullPath] = resource;
         return resource;
     }
+
+
 
     return nullptr;
 }

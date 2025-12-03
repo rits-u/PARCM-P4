@@ -7,6 +7,7 @@
 #include "../GameEngine/UI/UIManager.h"
 #include "../GameEngine/GameObject/GameObjectManager.h"
 #include "../GameEngine/GameObject/Types.h"
+#include "../GameEngine/SceneManager/SceneManager.h"
 
 #include <iostream>
 #include <vector>

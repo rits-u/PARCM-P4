@@ -2,7 +2,7 @@ set protobuf_cmd="%VCPKG_ROOT%/packages/protobuf_x64-windows/tools/protobuf/prot
 set grpc_exe_dir="%VCPKG_ROOT%/installed/x64-windows/tools/grpc/grpc_cpp_plugin.exe"
 
 set src="%cd%"
-set proto_file="%cd%/hello.proto"
+set proto_file="%cd%/scene.proto"
 set dest="%cd%/generated"
 
 :: compile command

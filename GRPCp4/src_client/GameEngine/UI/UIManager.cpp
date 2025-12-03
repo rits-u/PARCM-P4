@@ -66,9 +66,9 @@ UIManager::UIManager(HWND windowHandle)
     this->uiMap[uiNames.MENU_TOOLBAR] = menuToolbar;
     this->uiList.push_back(menuToolbar);
 
-    CreditsScreen* creditsScreen = new CreditsScreen();
-    this->uiMap[uiNames.CREDITS_SCREEN] = creditsScreen;
-    this->uiList.push_back(creditsScreen);
+    //CreditsScreen* creditsScreen = new CreditsScreen();
+    //this->uiMap[uiNames.CREDITS_SCREEN] = creditsScreen;
+    //this->uiList.push_back(creditsScreen);
 
     InspectorScreen* inspectorScreen = new InspectorScreen();
     this->uiMap[uiNames.INSPECTOR_SCREEN] = inspectorScreen;
@@ -77,6 +77,10 @@ UIManager::UIManager(HWND windowHandle)
     HierarchyScreen* hierarchyScreen = new HierarchyScreen();
     this->uiMap[uiNames.HIERARCHY_SCREEN] = hierarchyScreen;
     this->uiList.push_back(hierarchyScreen);
+
+    SceneSelector* sceneSelector = new SceneSelector();
+    this->uiMap[uiNames.SCENE_SELECTOR] = sceneSelector;
+    this->uiList.push_back(sceneSelector);
 
    // CreditsSreen* 
 }

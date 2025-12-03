@@ -2,6 +2,7 @@ syntax = "proto3";
 
 service SceneGRPC {
 	rpc GetScene(SceneRequest) returns (SceneResponse){}
+	rpc StreamObjFile(ObjFileRequest) returns (stream ObjChunk);
 }
 
 message Vector3D {
@@ -23,15 +24,27 @@ message Obj {
 
 message Model {
 	int32 modelID = 1;
-	Obj object = 2;
+	string modelName = 2;
+	//Obj object = 2;
 	Transform transform = 3;
 }
 
 message SceneResponse {
 	string sceneName = 1;
 	repeated Model models = 2;
+	//bytes scenePreview = 3;
+	string msg = 3;
 }
 
 message SceneRequest {
 	int32 sceneID = 1;
+}
+
+
+message ObjFileRequest {
+    int32 modelID = 1; 
+}
+
+message ObjChunk {
+    bytes data = 1;   
 }
