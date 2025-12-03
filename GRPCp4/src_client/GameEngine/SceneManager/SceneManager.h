@@ -1,22 +1,26 @@
 #pragma once
 //#include "SceneLoader.h"
 //#include <grpcpp/grpcpp.h>
-class SceneLoader;
+#include "SceneLoadTask.h"
 
+class SceneLoader;
 class SceneManager {
 public:
 	static SceneManager* get();
 	static void initialize();
 	static void destroy();
-	SceneLoader* getLoader();
+	//SceneLoader* getLoader();
 	void LoadScene(int SceneID);
 
 
 private:
-	SceneLoader* loader;
 	SceneManager();
 	~SceneManager();
 	SceneManager(SceneManager const&) {};
 	SceneManager& operator=(SceneManager const&) {};
 	static SceneManager* sharedInstance;
+
+private:
+	SceneLoader* loader;
+	//std::unique_ptr<SceneLoader> loader;
 };

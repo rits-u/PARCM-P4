@@ -1,3 +1,5 @@
+#pragma once
+
 #include <grpcpp/grpcpp.h>
 #include "../../../proto/generated/scene.pb.h"
 #include "../../../proto/generated/scene.grpc.pb.h"
@@ -5,8 +7,6 @@
 #include "../GraphicsEngine/Prerequisites.h"
 #include "../GraphicsEngine/GraphicsEngine.h"
 #include "../GameObject/GameObjectManager.h"
-
-using namespace std;
 
 class SceneLoader {
 private:

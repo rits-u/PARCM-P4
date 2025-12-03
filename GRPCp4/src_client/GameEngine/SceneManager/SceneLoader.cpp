@@ -2,7 +2,13 @@
 //#include "../Mesh/MeshManager.h"
 
 
-SceneLoader::SceneLoader(std::shared_ptr<grpc::Channel> channel) : stub(SceneGRPC::NewStub(channel))
+
+//
+//SceneLoader::SceneLoader(std::shared_ptr<grpc::Channel> ch) : channel(ch), stub(SceneGRPC::NewStub(ch))
+//{
+//}
+
+SceneLoader::SceneLoader(std::shared_ptr<grpc::Channel> ch) : stub(SceneGRPC::NewStub(ch))
 {
 }
 
@@ -30,7 +36,7 @@ void SceneLoader::GetScene(const int& SceneID) {
 
 			MeshPtr mesh = meshManager->createOrGetMesh(ID, objData.data(), objData.size());
 			GameObjectManager* manager = GameObjectManager::get();
-			GameObject* obj = new GameObject(manager->adjustName("Bunny"));
+			GameObject* obj = new GameObject(manager->adjustName(model.modelname()));
 
 			obj->addComponent<MeshRenderer>(mesh);
 			manager->addObject(obj);
@@ -60,6 +66,7 @@ std::string SceneLoader::StreamObjFile(const int& ModelID)
 	std::string objData;
 
 	while (reader->Read(&chunk)) {
+		
 		objData.append(chunk.data());
 	}
 
@@ -72,3 +79,8 @@ std::string SceneLoader::StreamObjFile(const int& ModelID)
 	//return std::string();
 	return objData;
 }
+//
+//std::shared_ptr<grpc::Channel> SceneLoader::getChannel()
+//{
+//	return channel;
+//}
