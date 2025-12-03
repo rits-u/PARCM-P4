@@ -14,7 +14,7 @@ MeshPtr MeshManager::createMeshFromFile(const wchar_t* filePath)
 	return std::static_pointer_cast<Mesh>(createResourceFromFile(filePath));
 }
 
-MeshPtr MeshManager::createOrGetMesh(int ID, const void* objData, size_t dataSize)
+MeshPtr MeshManager::createMesh(int ID, const void* objData, size_t dataSize)
 {
 	//if mesh already exists
 	auto it = meshCache.find(ID);
@@ -28,6 +28,9 @@ MeshPtr MeshManager::createOrGetMesh(int ID, const void* objData, size_t dataSiz
 	return mesh;
 }
 
+MeshPtr MeshManager::getMesh(int ID) {
+	return meshCache[ID];
+}
 
 
 Resource* MeshManager::createResourceFromFileConcrete(const wchar_t* filePath)

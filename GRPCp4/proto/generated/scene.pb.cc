@@ -224,6 +224,7 @@ inline constexpr SceneResponse::Impl_::Impl_(
         msg_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
+        sceneid_{0},
         _cached_size_{0} {}
 
 template <typename>
@@ -309,6 +310,7 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::SceneResponse, _impl_.sceneid_),
         PROTOBUF_FIELD_OFFSET(::SceneResponse, _impl_.scenename_),
         PROTOBUF_FIELD_OFFSET(::SceneResponse, _impl_.models_),
         PROTOBUF_FIELD_OFFSET(::SceneResponse, _impl_.msg_),
@@ -348,9 +350,9 @@ static const ::_pbi::MigrationSchema
         {25, -1, -1, sizeof(::Obj)},
         {35, 46, -1, sizeof(::Model)},
         {49, -1, -1, sizeof(::SceneResponse)},
-        {60, -1, -1, sizeof(::SceneRequest)},
-        {69, -1, -1, sizeof(::ObjFileRequest)},
-        {78, -1, -1, sizeof(::ObjChunk)},
+        {61, -1, -1, sizeof(::SceneRequest)},
+        {70, -1, -1, sizeof(::ObjFileRequest)},
+        {79, -1, -1, sizeof(::ObjChunk)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::_Vector3_default_instance_._instance,
@@ -370,20 +372,21 @@ const char descriptor_table_protodef_scene_2eproto[] ABSL_ATTRIBUTE_SECTION_VARI
     "ector3\022\027\n\005scale\030\003 \001(\0132\010.Vector3\"\'\n\003Obj\022\017"
     "\n\007objName\030\001 \001(\t\022\017\n\007objFile\030\002 \001(\014\"J\n\005Mode"
     "l\022\017\n\007modelID\030\001 \001(\005\022\021\n\tmodelName\030\002 \001(\t\022\035\n"
-    "\ttransform\030\003 \001(\0132\n.Transform\"G\n\rSceneRes"
-    "ponse\022\021\n\tsceneName\030\001 \001(\t\022\026\n\006models\030\002 \003(\013"
-    "2\006.Model\022\013\n\003msg\030\003 \001(\t\"\037\n\014SceneRequest\022\017\n"
-    "\007sceneID\030\001 \001(\005\"!\n\016ObjFileRequest\022\017\n\007mode"
-    "lID\030\001 \001(\005\"\030\n\010ObjChunk\022\014\n\004data\030\001 \001(\0142g\n\tS"
-    "ceneGRPC\022+\n\010GetScene\022\r.SceneRequest\032\016.Sc"
-    "eneResponse\"\000\022-\n\rStreamObjFile\022\017.ObjFile"
-    "Request\032\t.ObjChunk0\001b\006proto3"
+    "\ttransform\030\003 \001(\0132\n.Transform\"X\n\rSceneRes"
+    "ponse\022\017\n\007sceneID\030\001 \001(\005\022\021\n\tsceneName\030\002 \001("
+    "\t\022\026\n\006models\030\003 \003(\0132\006.Model\022\013\n\003msg\030\004 \001(\t\"\037"
+    "\n\014SceneRequest\022\017\n\007sceneID\030\001 \001(\005\"!\n\016ObjFi"
+    "leRequest\022\017\n\007modelID\030\001 \001(\005\"\030\n\010ObjChunk\022\014"
+    "\n\004data\030\001 \001(\0142k\n\tSceneGRPC\022/\n\014PreloadScen"
+    "e\022\r.SceneRequest\032\016.SceneResponse\"\000\022-\n\rSt"
+    "reamObjFile\022\017.ObjFileRequest\032\t.ObjChunk0"
+    "\001b\006proto3"
 };
 static ::absl::once_flag descriptor_table_scene_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_scene_2eproto = {
     false,
     false,
-    548,
+    569,
     descriptor_table_protodef_scene_2eproto,
     "scene.proto",
     &descriptor_table_scene_2eproto_once,
@@ -1608,6 +1611,7 @@ SceneResponse::SceneResponse(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.sceneid_ = from._impl_.sceneid_;
 
   // @@protoc_insertion_point(copy_constructor:SceneResponse)
 }
@@ -1621,6 +1625,7 @@ inline PROTOBUF_NDEBUG_INLINE SceneResponse::Impl_::Impl_(
 
 inline void SceneResponse::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.sceneid_ = {};
 }
 SceneResponse::~SceneResponse() {
   // @@protoc_insertion_point(destructor:SceneResponse)
@@ -1683,15 +1688,15 @@ const ::google::protobuf::internal::ClassData* SceneResponse::GetClassData() con
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 1, 34, 2> SceneResponse::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 1, 34, 2> SceneResponse::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    4,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -1701,32 +1706,37 @@ const ::_pbi::TcParseTable<2, 3, 1, 34, 2> SceneResponse::_table_ = {
     ::_pbi::TcParser::GetTable<::SceneResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-    // string sceneName = 1;
+    // string msg = 4;
     {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(SceneResponse, _impl_.scenename_)}},
-    // repeated .Model models = 2;
+     {34, 63, 0, PROTOBUF_FIELD_OFFSET(SceneResponse, _impl_.msg_)}},
+    // int32 sceneID = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(SceneResponse, _impl_.sceneid_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(SceneResponse, _impl_.sceneid_)}},
+    // string sceneName = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(SceneResponse, _impl_.scenename_)}},
+    // repeated .Model models = 3;
     {::_pbi::TcParser::FastMtR1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(SceneResponse, _impl_.models_)}},
-    // string msg = 3;
-    {::_pbi::TcParser::FastUS1,
-     {26, 63, 0, PROTOBUF_FIELD_OFFSET(SceneResponse, _impl_.msg_)}},
+     {26, 63, 0, PROTOBUF_FIELD_OFFSET(SceneResponse, _impl_.models_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // string sceneName = 1;
+    // int32 sceneID = 1;
+    {PROTOBUF_FIELD_OFFSET(SceneResponse, _impl_.sceneid_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // string sceneName = 2;
     {PROTOBUF_FIELD_OFFSET(SceneResponse, _impl_.scenename_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // repeated .Model models = 2;
+    // repeated .Model models = 3;
     {PROTOBUF_FIELD_OFFSET(SceneResponse, _impl_.models_), 0, 0,
     (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // string msg = 3;
+    // string msg = 4;
     {PROTOBUF_FIELD_OFFSET(SceneResponse, _impl_.msg_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }}, {{
     {::_pbi::TcParser::GetTable<::Model>()},
   }}, {{
-    "\15\11\0\3\0\0\0\0"
+    "\15\0\11\0\3\0\0\0"
     "SceneResponse"
     "sceneName"
     "msg"
@@ -1743,6 +1753,7 @@ PROTOBUF_NOINLINE void SceneResponse::Clear() {
   _impl_.models_.Clear();
   _impl_.scenename_.ClearToEmpty();
   _impl_.msg_.ClearToEmpty();
+  _impl_.sceneid_ = 0;
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -1761,31 +1772,38 @@ PROTOBUF_NOINLINE void SceneResponse::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // string sceneName = 1;
+          // int32 sceneID = 1;
+          if (this_._internal_sceneid() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<1>(
+                    stream, this_._internal_sceneid(), target);
+          }
+
+          // string sceneName = 2;
           if (!this_._internal_scenename().empty()) {
             const std::string& _s = this_._internal_scenename();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
                 _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "SceneResponse.sceneName");
-            target = stream->WriteStringMaybeAliased(1, _s, target);
+            target = stream->WriteStringMaybeAliased(2, _s, target);
           }
 
-          // repeated .Model models = 2;
+          // repeated .Model models = 3;
           for (unsigned i = 0, n = static_cast<unsigned>(
                                    this_._internal_models_size());
                i < n; i++) {
             const auto& repfield = this_._internal_models().Get(i);
             target =
                 ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-                    2, repfield, repfield.GetCachedSize(),
+                    3, repfield, repfield.GetCachedSize(),
                     target, stream);
           }
 
-          // string msg = 3;
+          // string msg = 4;
           if (!this_._internal_msg().empty()) {
             const std::string& _s = this_._internal_msg();
             ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
                 _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "SceneResponse.msg");
-            target = stream->WriteStringMaybeAliased(3, _s, target);
+            target = stream->WriteStringMaybeAliased(4, _s, target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1813,7 +1831,7 @@ PROTOBUF_NOINLINE void SceneResponse::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // repeated .Model models = 2;
+            // repeated .Model models = 3;
             {
               total_size += 1UL * this_._internal_models_size();
               for (const auto& msg : this_._internal_models()) {
@@ -1822,15 +1840,20 @@ PROTOBUF_NOINLINE void SceneResponse::Clear() {
             }
           }
            {
-            // string sceneName = 1;
+            // string sceneName = 2;
             if (!this_._internal_scenename().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_scenename());
             }
-            // string msg = 3;
+            // string msg = 4;
             if (!this_._internal_msg().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_msg());
+            }
+            // int32 sceneID = 1;
+            if (this_._internal_sceneid() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_sceneid());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -1853,6 +1876,9 @@ void SceneResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::g
   if (!from._internal_msg().empty()) {
     _this->_internal_set_msg(from._internal_msg());
   }
+  if (from._internal_sceneid() != 0) {
+    _this->_impl_.sceneid_ = from._impl_.sceneid_;
+  }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1872,6 +1898,7 @@ void SceneResponse::InternalSwap(SceneResponse* PROTOBUF_RESTRICT other) {
   _impl_.models_.InternalSwap(&other->_impl_.models_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.scenename_, &other->_impl_.scenename_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.msg_, &other->_impl_.msg_, arena);
+        swap(_impl_.sceneid_, other->_impl_.sceneid_);
 }
 
 ::google::protobuf::Metadata SceneResponse::GetMetadata() const {

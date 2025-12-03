@@ -28,6 +28,7 @@ void AppWindow::onCreate()
 	RenderSystem* renderSystem = GraphicsEngine::get()->getRenderSystem();
 
 	SceneManager::get()->initialize();
+	SceneManager::get()->ScheduleLoadScene(1);
 
 	SceneCameraHandler::get()->initialize();
 	SceneCameraHandler* cameraHandler = SceneCameraHandler::get();

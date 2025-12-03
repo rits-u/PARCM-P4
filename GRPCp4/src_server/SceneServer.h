@@ -7,7 +7,7 @@
 class SceneServer final : public SceneGRPC::Service {
 
 public:
-	grpc::Status GetScene(grpc::ServerContext* context, const SceneRequest* request, SceneResponse* response);
+	grpc::Status PreloadScene(grpc::ServerContext* context, const SceneRequest* request, SceneResponse* response);
 	grpc::Status StreamObjFile(grpc::ServerContext* context, const ObjFileRequest* request, grpc::ServerWriter<ObjChunk>* writer);
 
 	void RunServer();
@@ -15,5 +15,7 @@ public:
 private:
 	std::string GetModelPath(int ID);
 	void SetSceneProperties(SceneResponse* response, int SceneID);
+	void AddModelToData(SceneResponse* response, int ModelID, std::string name);
+	float RNG(int min, int max);
 
 };

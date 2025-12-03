@@ -7,6 +7,7 @@ class MyTransform
 {
 public:
 	MyTransform();
+	MyTransform(Vector3D pos, Vector3D rot, Vector3D scale);
 	Matrix4x4 getLocalMatrix();
 
 private:

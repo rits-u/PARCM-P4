@@ -1692,11 +1692,12 @@ class SceneResponse final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kModelsFieldNumber = 2,
-    kSceneNameFieldNumber = 1,
-    kMsgFieldNumber = 3,
+    kModelsFieldNumber = 3,
+    kSceneNameFieldNumber = 2,
+    kMsgFieldNumber = 4,
+    kSceneIDFieldNumber = 1,
   };
-  // repeated .Model models = 2;
+  // repeated .Model models = 3;
   int models_size() const;
   private:
   int _internal_models_size() const;
@@ -1713,7 +1714,7 @@ class SceneResponse final : public ::google::protobuf::Message
   const ::Model& models(int index) const;
   ::Model* add_models();
   const ::google::protobuf::RepeatedPtrField<::Model>& models() const;
-  // string sceneName = 1;
+  // string sceneName = 2;
   void clear_scenename() ;
   const std::string& scenename() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1729,7 +1730,7 @@ class SceneResponse final : public ::google::protobuf::Message
   std::string* _internal_mutable_scenename();
 
   public:
-  // string msg = 3;
+  // string msg = 4;
   void clear_msg() ;
   const std::string& msg() const;
   template <typename Arg_ = const std::string&, typename... Args_>
@@ -1745,12 +1746,22 @@ class SceneResponse final : public ::google::protobuf::Message
   std::string* _internal_mutable_msg();
 
   public:
+  // int32 sceneID = 1;
+  void clear_sceneid() ;
+  ::int32_t sceneid() const;
+  void set_sceneid(::int32_t value);
+
+  private:
+  ::int32_t _internal_sceneid() const;
+  void _internal_set_sceneid(::int32_t value);
+
+  public:
   // @@protoc_insertion_point(class_scope:SceneResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      2, 3, 1,
+      2, 4, 1,
       34, 2>
       _table_;
 
@@ -1771,6 +1782,7 @@ class SceneResponse final : public ::google::protobuf::Message
     ::google::protobuf::RepeatedPtrField< ::Model > models_;
     ::google::protobuf::internal::ArenaStringPtr scenename_;
     ::google::protobuf::internal::ArenaStringPtr msg_;
+    ::int32_t sceneid_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -2426,7 +2438,29 @@ inline void Model::set_allocated_transform(::Transform* value) {
 
 // SceneResponse
 
-// string sceneName = 1;
+// int32 sceneID = 1;
+inline void SceneResponse::clear_sceneid() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sceneid_ = 0;
+}
+inline ::int32_t SceneResponse::sceneid() const {
+  // @@protoc_insertion_point(field_get:SceneResponse.sceneID)
+  return _internal_sceneid();
+}
+inline void SceneResponse::set_sceneid(::int32_t value) {
+  _internal_set_sceneid(value);
+  // @@protoc_insertion_point(field_set:SceneResponse.sceneID)
+}
+inline ::int32_t SceneResponse::_internal_sceneid() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.sceneid_;
+}
+inline void SceneResponse::_internal_set_sceneid(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sceneid_ = value;
+}
+
+// string sceneName = 2;
 inline void SceneResponse::clear_scenename() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.scenename_.ClearToEmpty();
@@ -2474,7 +2508,7 @@ inline void SceneResponse::set_allocated_scenename(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:SceneResponse.sceneName)
 }
 
-// repeated .Model models = 2;
+// repeated .Model models = 3;
 inline int SceneResponse::_internal_models_size() const {
   return _internal_models().size();
 }
@@ -2523,7 +2557,7 @@ SceneResponse::_internal_mutable_models() {
   return &_impl_.models_;
 }
 
-// string msg = 3;
+// string msg = 4;
 inline void SceneResponse::clear_msg() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.msg_.ClearToEmpty();

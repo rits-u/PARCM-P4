@@ -21,7 +21,7 @@
 #include <grpcpp/support/sync_stream.h>
 
 static const char* SceneGRPC_method_names[] = {
-  "/SceneGRPC/GetScene",
+  "/SceneGRPC/PreloadScene",
   "/SceneGRPC/StreamObjFile",
 };
 
@@ -32,29 +32,29 @@ std::unique_ptr< SceneGRPC::Stub> SceneGRPC::NewStub(const std::shared_ptr< ::gr
 }
 
 SceneGRPC::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_GetScene_(SceneGRPC_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_PreloadScene_(SceneGRPC_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_StreamObjFile_(SceneGRPC_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   {}
 
-::grpc::Status SceneGRPC::Stub::GetScene(::grpc::ClientContext* context, const ::SceneRequest& request, ::SceneResponse* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::SceneRequest, ::SceneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetScene_, context, request, response);
+::grpc::Status SceneGRPC::Stub::PreloadScene(::grpc::ClientContext* context, const ::SceneRequest& request, ::SceneResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::SceneRequest, ::SceneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_PreloadScene_, context, request, response);
 }
 
-void SceneGRPC::Stub::async::GetScene(::grpc::ClientContext* context, const ::SceneRequest* request, ::SceneResponse* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::SceneRequest, ::SceneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetScene_, context, request, response, std::move(f));
+void SceneGRPC::Stub::async::PreloadScene(::grpc::ClientContext* context, const ::SceneRequest* request, ::SceneResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::SceneRequest, ::SceneResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PreloadScene_, context, request, response, std::move(f));
 }
 
-void SceneGRPC::Stub::async::GetScene(::grpc::ClientContext* context, const ::SceneRequest* request, ::SceneResponse* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetScene_, context, request, response, reactor);
+void SceneGRPC::Stub::async::PreloadScene(::grpc::ClientContext* context, const ::SceneRequest* request, ::SceneResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_PreloadScene_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::SceneResponse>* SceneGRPC::Stub::PrepareAsyncGetSceneRaw(::grpc::ClientContext* context, const ::SceneRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::SceneResponse, ::SceneRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetScene_, context, request);
+::grpc::ClientAsyncResponseReader< ::SceneResponse>* SceneGRPC::Stub::PrepareAsyncPreloadSceneRaw(::grpc::ClientContext* context, const ::SceneRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::SceneResponse, ::SceneRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_PreloadScene_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::SceneResponse>* SceneGRPC::Stub::AsyncGetSceneRaw(::grpc::ClientContext* context, const ::SceneRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::SceneResponse>* SceneGRPC::Stub::AsyncPreloadSceneRaw(::grpc::ClientContext* context, const ::SceneRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsyncGetSceneRaw(context, request, cq);
+    this->PrepareAsyncPreloadSceneRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -84,7 +84,7 @@ SceneGRPC::Service::Service() {
              ::grpc::ServerContext* ctx,
              const ::SceneRequest* req,
              ::SceneResponse* resp) {
-               return service->GetScene(ctx, req, resp);
+               return service->PreloadScene(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       SceneGRPC_method_names[1],
@@ -101,7 +101,7 @@ SceneGRPC::Service::Service() {
 SceneGRPC::Service::~Service() {
 }
 
-::grpc::Status SceneGRPC::Service::GetScene(::grpc::ServerContext* context, const ::SceneRequest* request, ::SceneResponse* response) {
+::grpc::Status SceneGRPC::Service::PreloadScene(::grpc::ServerContext* context, const ::SceneRequest* request, ::SceneResponse* response) {
   (void) context;
   (void) request;
   (void) response;

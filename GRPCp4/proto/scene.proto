@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 service SceneGRPC {
-	rpc GetScene(SceneRequest) returns (SceneResponse){}
+	rpc PreloadScene(SceneRequest) returns (SceneResponse){}
 	rpc StreamObjFile(ObjFileRequest) returns (stream ObjChunk);
 }
 
@@ -30,10 +30,11 @@ message Model {
 }
 
 message SceneResponse {
-	string sceneName = 1;
-	repeated Model models = 2;
+	int32 sceneID = 1;
+	string sceneName = 2;
+	repeated Model models = 3;
 	//bytes scenePreview = 3;
-	string msg = 3;
+	string msg = 4;
 }
 
 message SceneRequest {

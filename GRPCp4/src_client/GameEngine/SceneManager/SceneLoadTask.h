@@ -6,12 +6,12 @@
 
 class SceneLoader;
 class SceneLoadTask : public IWorkerAction {
-//public:
-//	SceneLoadTask(int sceneID, std::shared_ptr<grpc::Channel> channel);
-//
-//	void OnStartTask() override;
-//
-//private:
-//	int sceneID;
-//	SceneLoader loader;
+public:
+	SceneLoadTask(int sceneID, SceneLoader* loader);
+
+	void OnStartTask() override;
+
+private:
+	int sceneID;
+	SceneLoader* loader;
 };

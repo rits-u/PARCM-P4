@@ -1,7 +1,8 @@
 #include "SceneServer.h"
 #include <fstream>
+#include <random>
 
-grpc::Status SceneServer::GetScene(grpc::ServerContext* context, const SceneRequest* request, SceneResponse* response) {
+grpc::Status SceneServer::PreloadScene(grpc::ServerContext* context, const SceneRequest* request, SceneResponse* response) {
 	int ID = request->sceneid();
 	SetSceneProperties(response, ID);
 
@@ -72,13 +73,51 @@ std::string SceneServer::GetModelPath(int ID)
 
 void SceneServer::SetSceneProperties(SceneResponse* response, int SceneID)
 {
+	//response->set
 	switch (SceneID) {
 	case 1:
-		Model* model = response->add_models();
+		response->set_sceneid(1);
+		response->set_scenename("WasteLand");
+		AddModelToData(response, 2, "Bunny");
+
+		/*Model* model = response->add_models();
 		model->set_modelid(2);
-		model->set_modelname("Bunny");
+		model->set_modelname("Bunny");*/
+
 		break;
 	}
 	//std::cout << "scene id: " << SceneID << std::endl;
 
+}
+
+void SceneServer::AddModelToData(SceneResponse* response, int ModelID, std::string name)
+{
+	
+	Model* model = response->add_models();
+	model->set_modelid(ModelID);
+	model->set_modelname(name);
+	
+	Transform* t = model->mutable_transform();
+	int min = 0; int max = 5;
+	Vector3* pos = t->mutable_position(); 
+	pos->set_x(RNG(min, max)); pos->set_y(RNG(min, max)); pos->set_z(RNG(min, max));
+
+	min = 0; max = 360;
+	Vector3* rot = t->mutable_rotation();
+	rot->set_x(RNG(min, max)); rot->set_y(RNG(min, max)); rot->set_z(RNG(min, max));
+
+	min = 1; max = 5;
+	Vector3* sca = t->mutable_scale();
+	sca->set_x(RNG(min, max)); sca->set_y(RNG(min, max)); sca->set_z(RNG(min, max));
+
+	//model->set_trasf
+
+}
+
+float SceneServer::RNG(int min, int max)
+{
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> distrib(min, max);
+	return (float)distrib(gen);
 }

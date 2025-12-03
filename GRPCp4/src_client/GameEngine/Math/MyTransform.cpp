@@ -7,6 +7,12 @@ MyTransform::MyTransform()
 	this->localRotation = Vector3D::zeros();
 }
 
+MyTransform::MyTransform(Vector3D pos, Vector3D rot, Vector3D scale) {
+	this->localPosition = pos;
+	this->localRotation = rot;
+	this->localScale = scale;
+}
+
 Matrix4x4 MyTransform::getLocalMatrix()
 {
 	this->localMatrix = calculateMatrix();

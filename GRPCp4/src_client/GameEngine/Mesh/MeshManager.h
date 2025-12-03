@@ -11,7 +11,9 @@ public:
 	~MeshManager();
 
 	MeshPtr createMeshFromFile(const wchar_t* filePath);
-	MeshPtr createOrGetMesh(int ID, const void* objData, size_t dataSize);
+	MeshPtr createMesh(int ID, const void* objData, size_t dataSize);
+	MeshPtr getMesh(int ID);
+	//MeshPtr createOrGetMesh(int ID, const void* objData, size_t dataSize);
 
 protected:
 	virtual Resource* createResourceFromFileConcrete(const wchar_t* filePath);

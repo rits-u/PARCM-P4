@@ -19,7 +19,10 @@ void SceneSelector::draw()
 
 	ImGui::Text("Scene A");
 	if (ImGui::Button("Load")) {
-		SceneManager::get()->LoadScene(1);
+		//SceneManager::get()->LoadScene(1);
+		//std::cout << "how many: " << SceneManager::get()->preloadedScenes[1].sceneID << std::endl;
+		SceneManager::get()->InstantiateScene("WasteLand");
+
 		//std::cout << "HASUDHASUHD" << std::endl;
 	}
 	ImGui::End();
