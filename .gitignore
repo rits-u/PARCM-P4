@@ -417,4 +417,4 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
-!Assets/Meshes/*.obj
+!GRPCp4/src_server/Assets/Meshes/*.obj
