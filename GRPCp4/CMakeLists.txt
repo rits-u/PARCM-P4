@@ -35,6 +35,13 @@ set_target_properties(DirectXTexLib PROPERTIES
 )
 
 
+set(THREADTOOL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/ThreadTool")
+file(GLOB_RECURSE THREADTOOL_SRC CONFIGURE_DEPENDS
+    "${THREADTOOL_PATH}/*.[ch]pp")
+
+add_library(ThreadTool STATIC ${THREADTOOL_SRC})
+target_include_directories(ThreadTool PUBLIC ${THREADTOOL_PATH})
+
 #add_library(proto
 #    hello.pb.cc
 #    hello.grpc.pb.cc
@@ -55,6 +62,7 @@ add_executable (GRPC_Server ${PROTO_SRC} ${PROTO_HEADERS} ${SERVER_SRC})
 target_compile_definitions(GRPC_Server PUBLIC "PROTOBUF_USE_DLLS")
 
 target_link_libraries(GRPC_Server PUBLIC
+	ThreadTool
 	protobuf::libprotobuf
 	gRPC::grpc
 	gRPC::grpc++
@@ -83,6 +91,7 @@ add_executable (GRPC_Client ${PROTO_SRC} ${PROTO_HEADERS} ${CLIENT_SRC})
 target_compile_definitions(GRPC_Client PUBLIC "PROTOBUF_USE_DLLS")
 
 target_link_libraries(GRPC_Client PUBLIC
+	ThreadTool
 	protobuf::libprotobuf
 	gRPC::grpc
 	gRPC::grpc++
