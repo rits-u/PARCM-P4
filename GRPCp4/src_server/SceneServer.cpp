@@ -85,6 +85,13 @@ void SceneServer::SetSceneProperties(SceneResponse* response, int SceneID)
 		model->set_modelname("Bunny");*/
 
 		break;
+	case 2:
+		response->set_sceneid(2);
+		response->set_scenename("Nowhere");
+		AddModelToData(response, 2, "mafuyu");
+		AddModelToData(response, 2, "wasdasd");
+		break;
+
 	}
 	//std::cout << "scene id: " << SceneID << std::endl;
 
@@ -109,6 +116,12 @@ void SceneServer::AddModelToData(SceneResponse* response, int ModelID, std::stri
 	min = 1; max = 5;
 	Vector3* sca = t->mutable_scale();
 	sca->set_x(RNG(min, max)); sca->set_y(RNG(min, max)); sca->set_z(RNG(min, max));
+
+	std::string path = GetModelPath(ModelID);
+	std::ifstream file(path, std::ios::binary | std::ios::ate); //start at end of the file
+	if (file) {
+		model->set_size(file.tellg());
+	}
 
 	//model->set_trasf
 

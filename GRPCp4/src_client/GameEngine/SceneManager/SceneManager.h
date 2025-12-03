@@ -17,6 +17,11 @@ struct SceneData {
 	std::vector<SceneModelInfo> models;
 };
 
+struct SceneLoadProgress {
+	std::atomic<int64_t> bytesReceived{ 0 };
+	int64_t totalBytes{ 0 };
+};
+
 class SceneLoader;
 class SceneManager {
 public:
@@ -28,6 +33,8 @@ public:
 	void ScheduleLoadScene(int SceneID);
 	void RegisterPreloadedScene(const SceneData& sceneData);
 	void InstantiateScene(std::string sceneName);
+	SceneLoadProgress* getProgressByID(int SceneID);
+	void RegisterSceneProgress(int ID, SceneLoadProgress* progress);
 
 private:
 	SceneManager();
@@ -40,6 +47,7 @@ private:
 private:
 	SceneLoader* loader;
 	std::unique_ptr<ThreadPool> threadPool;
-	std::unordered_map<std::string, SceneData*> preloadedScenes;
+	std::unordered_map<std::string, SceneData> preloadedScenes;
+	std::unordered_map<int, SceneLoadProgress*> sceneProgress;
 	
 };

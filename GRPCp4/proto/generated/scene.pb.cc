@@ -129,36 +129,6 @@ struct ObjChunkDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ObjChunkDefaultTypeInternal _ObjChunk_default_instance_;
 
-inline constexpr Obj::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : objname_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        objfile_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        _cached_size_{0} {}
-
-template <typename>
-PROTOBUF_CONSTEXPR Obj::Obj(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct ObjDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ObjDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ObjDefaultTypeInternal() {}
-  union {
-    Obj _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ObjDefaultTypeInternal _Obj_default_instance_;
-
 inline constexpr Transform::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -193,6 +163,7 @@ inline constexpr Model::Impl_::Impl_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         transform_{nullptr},
+        size_{::int64_t{0}},
         modelid_{0} {}
 
 template <typename>
@@ -278,16 +249,6 @@ const ::uint32_t
         0,
         1,
         2,
-        ~0u,  // no _has_bits_
-        PROTOBUF_FIELD_OFFSET(::Obj, _internal_metadata_),
-        ~0u,  // no _extensions_
-        ~0u,  // no _oneof_case_
-        ~0u,  // no _weak_field_map_
-        ~0u,  // no _inlined_string_donated_
-        ~0u,  // no _split_
-        ~0u,  // no sizeof(Split)
-        PROTOBUF_FIELD_OFFSET(::Obj, _impl_.objname_),
-        PROTOBUF_FIELD_OFFSET(::Obj, _impl_.objfile_),
         PROTOBUF_FIELD_OFFSET(::Model, _impl_._has_bits_),
         PROTOBUF_FIELD_OFFSET(::Model, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -299,9 +260,11 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::Model, _impl_.modelid_),
         PROTOBUF_FIELD_OFFSET(::Model, _impl_.modelname_),
         PROTOBUF_FIELD_OFFSET(::Model, _impl_.transform_),
+        PROTOBUF_FIELD_OFFSET(::Model, _impl_.size_),
         ~0u,
         ~0u,
         0,
+        ~0u,
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::SceneResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -347,17 +310,15 @@ static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::Vector3)},
         {11, 22, -1, sizeof(::Transform)},
-        {25, -1, -1, sizeof(::Obj)},
-        {35, 46, -1, sizeof(::Model)},
-        {49, -1, -1, sizeof(::SceneResponse)},
-        {61, -1, -1, sizeof(::SceneRequest)},
-        {70, -1, -1, sizeof(::ObjFileRequest)},
-        {79, -1, -1, sizeof(::ObjChunk)},
+        {25, 37, -1, sizeof(::Model)},
+        {41, -1, -1, sizeof(::SceneResponse)},
+        {53, -1, -1, sizeof(::SceneRequest)},
+        {62, -1, -1, sizeof(::ObjFileRequest)},
+        {71, -1, -1, sizeof(::ObjChunk)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::_Vector3_default_instance_._instance,
     &::_Transform_default_instance_._instance,
-    &::_Obj_default_instance_._instance,
     &::_Model_default_instance_._instance,
     &::_SceneResponse_default_instance_._instance,
     &::_SceneRequest_default_instance_._instance,
@@ -369,30 +330,29 @@ const char descriptor_table_protodef_scene_2eproto[] ABSL_ATTRIBUTE_SECTION_VARI
     "\n\013scene.proto\"*\n\007Vector3\022\t\n\001x\030\001 \001(\002\022\t\n\001y"
     "\030\002 \001(\002\022\t\n\001z\030\003 \001(\002\"\\\n\tTransform\022\032\n\010positi"
     "on\030\001 \001(\0132\010.Vector3\022\032\n\010rotation\030\002 \001(\0132\010.V"
-    "ector3\022\027\n\005scale\030\003 \001(\0132\010.Vector3\"\'\n\003Obj\022\017"
-    "\n\007objName\030\001 \001(\t\022\017\n\007objFile\030\002 \001(\014\"J\n\005Mode"
-    "l\022\017\n\007modelID\030\001 \001(\005\022\021\n\tmodelName\030\002 \001(\t\022\035\n"
-    "\ttransform\030\003 \001(\0132\n.Transform\"X\n\rSceneRes"
-    "ponse\022\017\n\007sceneID\030\001 \001(\005\022\021\n\tsceneName\030\002 \001("
-    "\t\022\026\n\006models\030\003 \003(\0132\006.Model\022\013\n\003msg\030\004 \001(\t\"\037"
-    "\n\014SceneRequest\022\017\n\007sceneID\030\001 \001(\005\"!\n\016ObjFi"
-    "leRequest\022\017\n\007modelID\030\001 \001(\005\"\030\n\010ObjChunk\022\014"
-    "\n\004data\030\001 \001(\0142k\n\tSceneGRPC\022/\n\014PreloadScen"
-    "e\022\r.SceneRequest\032\016.SceneResponse\"\000\022-\n\rSt"
-    "reamObjFile\022\017.ObjFileRequest\032\t.ObjChunk0"
-    "\001b\006proto3"
+    "ector3\022\027\n\005scale\030\003 \001(\0132\010.Vector3\"X\n\005Model"
+    "\022\017\n\007modelID\030\001 \001(\005\022\021\n\tmodelName\030\002 \001(\t\022\035\n\t"
+    "transform\030\003 \001(\0132\n.Transform\022\014\n\004size\030\004 \001("
+    "\003\"X\n\rSceneResponse\022\017\n\007sceneID\030\001 \001(\005\022\021\n\ts"
+    "ceneName\030\002 \001(\t\022\026\n\006models\030\003 \003(\0132\006.Model\022\013"
+    "\n\003msg\030\004 \001(\t\"\037\n\014SceneRequest\022\017\n\007sceneID\030\001"
+    " \001(\005\"!\n\016ObjFileRequest\022\017\n\007modelID\030\001 \001(\005\""
+    "\030\n\010ObjChunk\022\014\n\004data\030\001 \001(\0142k\n\tSceneGRPC\022/"
+    "\n\014PreloadScene\022\r.SceneRequest\032\016.SceneRes"
+    "ponse\"\000\022-\n\rStreamObjFile\022\017.ObjFileReques"
+    "t\032\t.ObjChunk0\001b\006proto3"
 };
 static ::absl::once_flag descriptor_table_scene_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_scene_2eproto = {
     false,
     false,
-    569,
+    542,
     descriptor_table_protodef_scene_2eproto,
     "scene.proto",
     &descriptor_table_scene_2eproto_once,
     nullptr,
     0,
-    8,
+    7,
     schemas,
     file_default_instances,
     TableStruct_scene_2eproto::offsets,
@@ -999,263 +959,6 @@ void Transform::InternalSwap(Transform* PROTOBUF_RESTRICT other) {
 }
 // ===================================================================
 
-class Obj::_Internal {
- public:
-};
-
-Obj::Obj(::google::protobuf::Arena* arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:Obj)
-}
-inline PROTOBUF_NDEBUG_INLINE Obj::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::Obj& from_msg)
-      : objname_(arena, from.objname_),
-        objfile_(arena, from.objfile_),
-        _cached_size_{0} {}
-
-Obj::Obj(
-    ::google::protobuf::Arena* arena,
-    const Obj& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  Obj* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-
-  // @@protoc_insertion_point(copy_constructor:Obj)
-}
-inline PROTOBUF_NDEBUG_INLINE Obj::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility,
-    ::google::protobuf::Arena* arena)
-      : objname_(arena),
-        objfile_(arena),
-        _cached_size_{0} {}
-
-inline void Obj::SharedCtor(::_pb::Arena* arena) {
-  new (&_impl_) Impl_(internal_visibility(), arena);
-}
-Obj::~Obj() {
-  // @@protoc_insertion_point(destructor:Obj)
-  SharedDtor(*this);
-}
-inline void Obj::SharedDtor(MessageLite& self) {
-  Obj& this_ = static_cast<Obj&>(self);
-  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
-  ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.objname_.Destroy();
-  this_._impl_.objfile_.Destroy();
-  this_._impl_.~Impl_();
-}
-
-inline void* Obj::PlacementNew_(const void*, void* mem,
-                                        ::google::protobuf::Arena* arena) {
-  return ::new (mem) Obj(arena);
-}
-constexpr auto Obj::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Obj),
-                                            alignof(Obj));
-}
-PROTOBUF_CONSTINIT
-PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::google::protobuf::internal::ClassDataFull Obj::_class_data_ = {
-    ::google::protobuf::internal::ClassData{
-        &_Obj_default_instance_._instance,
-        &_table_.header,
-        nullptr,  // OnDemandRegisterArenaDtor
-        nullptr,  // IsInitialized
-        &Obj::MergeImpl,
-        ::google::protobuf::Message::GetNewImpl<Obj>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        &Obj::SharedDtor,
-        ::google::protobuf::Message::GetClearImpl<Obj>(), &Obj::ByteSizeLong,
-            &Obj::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-        PROTOBUF_FIELD_OFFSET(Obj, _impl_._cached_size_),
-        false,
-    },
-    &Obj::kDescriptorMethods,
-    &descriptor_table_scene_2eproto,
-    nullptr,  // tracker
-};
-const ::google::protobuf::internal::ClassData* Obj::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
-  return _class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 19, 2> Obj::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    2, 8,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967292,  // skipmap
-    offsetof(decltype(_table_), field_entries),
-    2,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    _class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::Obj>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    // bytes objFile = 2;
-    {::_pbi::TcParser::FastBS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Obj, _impl_.objfile_)}},
-    // string objName = 1;
-    {::_pbi::TcParser::FastUS1,
-     {10, 63, 0, PROTOBUF_FIELD_OFFSET(Obj, _impl_.objname_)}},
-  }}, {{
-    65535, 65535
-  }}, {{
-    // string objName = 1;
-    {PROTOBUF_FIELD_OFFSET(Obj, _impl_.objname_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // bytes objFile = 2;
-    {PROTOBUF_FIELD_OFFSET(Obj, _impl_.objfile_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-  }},
-  // no aux_entries
-  {{
-    "\3\7\0\0\0\0\0\0"
-    "Obj"
-    "objName"
-  }},
-};
-
-PROTOBUF_NOINLINE void Obj::Clear() {
-// @@protoc_insertion_point(message_clear_start:Obj)
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.objname_.ClearToEmpty();
-  _impl_.objfile_.ClearToEmpty();
-  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
-}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::uint8_t* Obj::_InternalSerialize(
-            const MessageLite& base, ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) {
-          const Obj& this_ = static_cast<const Obj&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::uint8_t* Obj::_InternalSerialize(
-            ::uint8_t* target,
-            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
-          const Obj& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(serialize_to_array_start:Obj)
-          ::uint32_t cached_has_bits = 0;
-          (void)cached_has_bits;
-
-          // string objName = 1;
-          if (!this_._internal_objname().empty()) {
-            const std::string& _s = this_._internal_objname();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Obj.objName");
-            target = stream->WriteStringMaybeAliased(1, _s, target);
-          }
-
-          // bytes objFile = 2;
-          if (!this_._internal_objfile().empty()) {
-            const std::string& _s = this_._internal_objfile();
-            target = stream->WriteBytesMaybeAliased(2, _s, target);
-          }
-
-          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
-            target =
-                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
-          }
-          // @@protoc_insertion_point(serialize_to_array_end:Obj)
-          return target;
-        }
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-        ::size_t Obj::ByteSizeLong(const MessageLite& base) {
-          const Obj& this_ = static_cast<const Obj&>(base);
-#else   // PROTOBUF_CUSTOM_VTABLE
-        ::size_t Obj::ByteSizeLong() const {
-          const Obj& this_ = *this;
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          // @@protoc_insertion_point(message_byte_size_start:Obj)
-          ::size_t total_size = 0;
-
-          ::uint32_t cached_has_bits = 0;
-          // Prevent compiler warnings about cached_has_bits being unused
-          (void)cached_has_bits;
-
-          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
-           {
-            // string objName = 1;
-            if (!this_._internal_objname().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_objname());
-            }
-            // bytes objFile = 2;
-            if (!this_._internal_objfile().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
-                                              this_._internal_objfile());
-            }
-          }
-          return this_.MaybeComputeUnknownFieldsSize(total_size,
-                                                     &this_._impl_._cached_size_);
-        }
-
-void Obj::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
-  auto* const _this = static_cast<Obj*>(&to_msg);
-  auto& from = static_cast<const Obj&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Obj)
-  ABSL_DCHECK_NE(&from, _this);
-  ::uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_objname().empty()) {
-    _this->_internal_set_objname(from._internal_objname());
-  }
-  if (!from._internal_objfile().empty()) {
-    _this->_internal_set_objfile(from._internal_objfile());
-  }
-  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void Obj::CopyFrom(const Obj& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:Obj)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-
-void Obj::InternalSwap(Obj* PROTOBUF_RESTRICT other) {
-  using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.objname_, &other->_impl_.objname_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.objfile_, &other->_impl_.objfile_, arena);
-}
-
-::google::protobuf::Metadata Obj::GetMetadata() const {
-  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
-}
-// ===================================================================
-
 class Model::_Internal {
  public:
   using HasBits =
@@ -1297,7 +1000,13 @@ Model::Model(
   _impl_.transform_ = (cached_has_bits & 0x00000001u) ? ::google::protobuf::Message::CopyConstruct<::Transform>(
                               arena, *from._impl_.transform_)
                         : nullptr;
-  _impl_.modelid_ = from._impl_.modelid_;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, size_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, size_),
+           offsetof(Impl_, modelid_) -
+               offsetof(Impl_, size_) +
+               sizeof(Impl_::modelid_));
 
   // @@protoc_insertion_point(copy_constructor:Model)
 }
@@ -1365,15 +1074,15 @@ const ::google::protobuf::internal::ClassData* Model::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 1, 23, 2> Model::_table_ = {
+const ::_pbi::TcParseTable<2, 4, 1, 23, 2> Model::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Model, _impl_._has_bits_),
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    4, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967280,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    4,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     _class_data_.base(),
@@ -1383,7 +1092,9 @@ const ::_pbi::TcParseTable<2, 3, 1, 23, 2> Model::_table_ = {
     ::_pbi::TcParser::GetTable<::Model>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    {::_pbi::TcParser::MiniParse, {}},
+    // int64 size = 4;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(Model, _impl_.size_), 63>(),
+     {32, 63, 0, PROTOBUF_FIELD_OFFSET(Model, _impl_.size_)}},
     // int32 modelID = 1;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Model, _impl_.modelid_), 63>(),
      {8, 63, 0, PROTOBUF_FIELD_OFFSET(Model, _impl_.modelid_)}},
@@ -1405,6 +1116,9 @@ const ::_pbi::TcParseTable<2, 3, 1, 23, 2> Model::_table_ = {
     // .Transform transform = 3;
     {PROTOBUF_FIELD_OFFSET(Model, _impl_.transform_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // int64 size = 4;
+    {PROTOBUF_FIELD_OFFSET(Model, _impl_.size_), -1, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt64)},
   }}, {{
     {::_pbi::TcParser::GetTable<::Transform>()},
   }}, {{
@@ -1427,7 +1141,9 @@ PROTOBUF_NOINLINE void Model::Clear() {
     ABSL_DCHECK(_impl_.transform_ != nullptr);
     _impl_.transform_->Clear();
   }
-  _impl_.modelid_ = 0;
+  ::memset(&_impl_.size_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.modelid_) -
+      reinterpret_cast<char*>(&_impl_.size_)) + sizeof(_impl_.modelid_));
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -1470,6 +1186,13 @@ PROTOBUF_NOINLINE void Model::Clear() {
                 stream);
           }
 
+          // int64 size = 4;
+          if (this_._internal_size() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt64ToArrayWithField<4>(
+                    stream, this_._internal_size(), target);
+          }
+
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
             target =
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -1510,6 +1233,11 @@ PROTOBUF_NOINLINE void Model::Clear() {
             }
           }
            {
+            // int64 size = 4;
+            if (this_._internal_size() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(
+                  this_._internal_size());
+            }
             // int32 modelID = 1;
             if (this_._internal_modelid() != 0) {
               total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
@@ -1541,6 +1269,9 @@ void Model::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::p
     } else {
       _this->_impl_.transform_->MergeFrom(*from._impl_.transform_);
     }
+  }
+  if (from._internal_size() != 0) {
+    _this->_impl_.size_ = from._impl_.size_;
   }
   if (from._internal_modelid() != 0) {
     _this->_impl_.modelid_ = from._impl_.modelid_;

@@ -54,7 +54,7 @@ void SceneManager::ScheduleLoadScene(int SceneID)
 
 void SceneManager::RegisterPreloadedScene(const SceneData& sceneData)
 {
-	this->preloadedScenes[sceneData.sceneName] = new SceneData(sceneData);
+	this->preloadedScenes[sceneData.sceneName] = SceneData(sceneData);
 	std::cout << "registered scene " << sceneData.sceneName << " with " << sceneData.models.size() << " models. \n";
 }
 
@@ -63,7 +63,16 @@ void SceneManager::InstantiateScene(std::string sceneName)
 	MeshManager* meshManager = GraphicsEngine::get()->getMeshManager();
 	GameObjectManager* objManager = GameObjectManager::get();
 
-	for (const auto& modelInfo : preloadedScenes[sceneName]->models) {
+	auto it = preloadedScenes.find(sceneName);
+	if (it == preloadedScenes.end()) {
+		std::cout << "[SCENE] " << sceneName << " is not loaded yet" << std::endl;
+		return;
+	}
+	else {
+		std::cout << "\n [SCENE] " << sceneName << " scene is found " << std::endl;
+	}
+
+	for (const auto& modelInfo : preloadedScenes[sceneName].models) {
 		MeshPtr mesh = meshManager->getMesh(modelInfo.modelID);
 		GameObject* obj = new GameObject(objManager->adjustName(modelInfo.modelName));
 		obj->addComponent<MeshRenderer>(mesh);
@@ -72,6 +81,16 @@ void SceneManager::InstantiateScene(std::string sceneName)
 		obj->setScale(modelInfo.transform.localScale);
 		GameObjectManager::get()->addObject(obj);
 	}
+}
+
+SceneLoadProgress* SceneManager::getProgressByID(int SceneID)
+{
+	return this->sceneProgress[SceneID];
+}
+
+void SceneManager::RegisterSceneProgress(int ID, SceneLoadProgress* progress)
+{
+	this->sceneProgress[ID] = progress;
 }
 
 SceneManager::SceneManager() {

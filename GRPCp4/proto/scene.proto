@@ -17,23 +17,22 @@ message Transform {
 	Vector3 scale = 3;
 }
 
-message Obj {
-	string objName = 1;
-	bytes objFile = 2;
-}
+//message Obj {
+//	string objName = 1;
+//	bytes objFile = 2;
+//}
 
 message Model {
 	int32 modelID = 1;
 	string modelName = 2;
-	//Obj object = 2;
 	Transform transform = 3;
+	int64 size = 4;
 }
 
 message SceneResponse {
 	int32 sceneID = 1;
 	string sceneName = 2;
 	repeated Model models = 3;
-	//bytes scenePreview = 3;
 	string msg = 4;
 }
 

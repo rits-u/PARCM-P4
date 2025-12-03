@@ -20,5 +20,5 @@ private:
 public:
 	SceneLoader(std::shared_ptr<grpc::Channel> channel);
 	void PreloadScene(const int& SceneID);
-	std::string StreamObjFile(const int& ModelID);
+	std::string StreamObjFile(const int& ModelID, std::atomic<int64_t>& bytesReceived, int64_t totalSceneBytes);
 };

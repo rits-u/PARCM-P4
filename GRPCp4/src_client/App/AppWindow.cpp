@@ -29,6 +29,7 @@ void AppWindow::onCreate()
 
 	SceneManager::get()->initialize();
 	SceneManager::get()->ScheduleLoadScene(1);
+	SceneManager::get()->ScheduleLoadScene(2);
 
 	SceneCameraHandler::get()->initialize();
 	SceneCameraHandler* cameraHandler = SceneCameraHandler::get();

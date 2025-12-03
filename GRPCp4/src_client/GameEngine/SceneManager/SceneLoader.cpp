@@ -1,4 +1,5 @@
 #include "SceneLoader.h"
+#include "../../../ThreadTool/IETThread.h"
 
 SceneLoader::SceneLoader(std::shared_ptr<grpc::Channel> ch) : stub(SceneGRPC::NewStub(ch))
 {
@@ -26,9 +27,17 @@ void SceneLoader::PreloadScene(const int& SceneID) {
 		sceneData.sceneID = SceneID;
 		sceneData.sceneName = response.scenename();
 
+		SceneLoadProgress* progress = new SceneLoadProgress();
+		SceneManager::get()->RegisterSceneProgress(SceneID, progress);
+		//int64_t totalSceneBytes = 0;
+		for (const auto& model : response.models()) {
+			progress->totalBytes += model.size();
+		}
+		//int64_t bytesReceived = 0;
+
 		for (const auto& model : response.models()) {
 			int ID = model.modelid();
-			std::string objData = this->StreamObjFile(ID);
+			std::string objData = this->StreamObjFile(ID, progress->bytesReceived, progress->totalBytes);
 			MeshPtr mesh = meshManager->createMesh(ID, objData.data(), objData.size());
 			
 			Vector3D position = Vector3D(model.transform().position().x(), model.transform().position().y(), model.transform().position().z());
@@ -51,11 +60,10 @@ void SceneLoader::PreloadScene(const int& SceneID) {
 	}
 }
 
-std::string SceneLoader::StreamObjFile(const int& ModelID)
+std::string SceneLoader::StreamObjFile(const int& ModelID, std::atomic<int64_t>& bytesReceived, int64_t totalSceneBytes)
 {
 	ObjFileRequest request;
 	request.set_modelid(ModelID);
-
 	grpc::ClientContext context;
 
 	std::unique_ptr<grpc::ClientReader<ObjChunk>> reader(stub->StreamObjFile(&context, request));
@@ -66,6 +74,10 @@ std::string SceneLoader::StreamObjFile(const int& ModelID)
 	while (reader->Read(&chunk)) {
 		
 		objData.append(chunk.data());
+		bytesReceived += chunk.data().size();
+		/*float progress = (float)bytesReceived / totalSceneBytes;
+		std::cout << "\rScene loading progress: " << int(progress * 100) << "%" << std::flush;*/
+		IETThread::sleep(100);
 	}
 
 	grpc::Status status = reader->Finish();
