@@ -34,9 +34,13 @@ grpc::Status SceneServer::StreamObjFile(grpc::ServerContext* context, const ObjF
 		std::streamsize bytesRead = file.gcount();
 		if (bytesRead == 0) break;
 
+		std::cout << "read: " << bytesRead << std::endl;
+
 		ObjChunk chunk;
 		chunk.set_data(buffer.data(), bytesRead);
 		writer->Write(chunk);
+
+		//IETThread::sleep(10);
 	}
 
 	return grpc::Status::OK;
@@ -68,6 +72,19 @@ std::string SceneServer::GetModelPath(int ID)
 	}
 
 	return path;
+}
+
+void SceneServer::AddModel(SceneResponse* response, int ModelID)
+{
+	Model* model = response->add_models();
+	switch (ModelID) {
+	case 2:
+		model->set_modelid(2);
+		model->set_modelname("Bunny");
+		break;
+	}
+
+	//initialize transform
 }
 
 void SceneServer::SetSceneProperties(SceneResponse* response, int SceneID)

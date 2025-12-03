@@ -11,10 +11,13 @@ using namespace std;
 class SceneLoader {
 private:
 	std::unique_ptr<SceneGRPC::Stub> stub;
+	std::shared_ptr<grpc::Channel> channel;
 
 
 public:
+
 	SceneLoader(std::shared_ptr<grpc::Channel> channel);
 	void GetScene(const int& SceneID);
 	std::string StreamObjFile(const int& ModelID);
+	std::shared_ptr<grpc::Channel> getChannel();
 };
