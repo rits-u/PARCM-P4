@@ -77,7 +77,7 @@ void SceneServer::SetSceneProperties(SceneResponse* response, int SceneID)
 	switch (SceneID) {
 	case 1:
 		response->set_sceneid(1);
-		response->set_scenename("WasteLand");
+		response->set_scenename("Waste Land");
 		AddModelToData(response, 2, "Bunny");
 
 		/*Model* model = response->add_models();
@@ -113,9 +113,9 @@ void SceneServer::AddModelToData(SceneResponse* response, int ModelID, std::stri
 	Vector3* rot = t->mutable_rotation();
 	rot->set_x(RNG(min, max)); rot->set_y(RNG(min, max)); rot->set_z(RNG(min, max));
 
-	min = 1; max = 5;
+	int n = RNG(1, 5);
 	Vector3* sca = t->mutable_scale();
-	sca->set_x(RNG(min, max)); sca->set_y(RNG(min, max)); sca->set_z(RNG(min, max));
+	sca->set_x(n); sca->set_y(n); sca->set_z(n);
 
 	std::string path = GetModelPath(ModelID);
 	std::ifstream file(path, std::ios::binary | std::ios::ate); //start at end of the file

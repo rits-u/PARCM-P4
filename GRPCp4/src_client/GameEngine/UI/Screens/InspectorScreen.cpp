@@ -1,6 +1,6 @@
 #include "InspectorScreen.h"
 
-InspectorScreen::InspectorScreen() : UIScreen("Inspector Screen")
+InspectorScreen::InspectorScreen() : UIScreen("Inspector", true)
 {
 }
 

@@ -17,9 +17,7 @@ public:
 	void draw() override;
 
 private:
-	//void toggleUIScreen(String name);
-	//SceneLoader* loader;
-	float myColor[4] = { 0.0f, 1.0f, 0.0f, 1.0f };
-
+	void displayScenePanel(int ID, char c, std::string name);
+	ImVec4 getColor(int ID);
 };
 

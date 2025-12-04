@@ -23,12 +23,12 @@ void MenuToolbar::draw()
 
     if (ImGui::BeginMainMenuBar())
     {
-        if (ImGui::BeginMenu("About")) {
+        /*if (ImGui::BeginMenu("About")) {
             if (ImGui::MenuItem("Credits")) {
                 this->toggleUIScreen(uiNames.CREDITS_SCREEN);
             }
             ImGui::EndMenu();
-        }   
+        }   */
 
         if (ImGui::BeginMenu("Window")) {
             if (ImGui::MenuItem("Hierarchy")) {
@@ -42,29 +42,29 @@ void MenuToolbar::draw()
         }
 
 
-        if (ImGui::BeginMenu("3D Objects")) {
-            if (ImGui::MenuItem("Teapot")) {
-                //GameObjectManager::get()->createModel("Teapot", this->shaderByteCode, this->sizeShader);
-               // MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\teapot.obj");
-                //MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\bunny.obj");
-                MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"..\\..\\..\\src_client\\Assets\\Meshes\\bunny.obj");
-                GameObjectManager* manager = GameObjectManager::get();
-                GameObject* obj = new GameObject(manager->adjustName("Teapot"));
+        //if (ImGui::BeginMenu("3D Objects")) {
+        //    if (ImGui::MenuItem("Teapot")) {
+        //        //GameObjectManager::get()->createModel("Teapot", this->shaderByteCode, this->sizeShader);
+        //       // MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\teapot.obj");
+        //        //MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"Assets\\Meshes\\bunny.obj");
+        //        MeshPtr mesh = GraphicsEngine::get()->getMeshManager()->createMeshFromFile(L"..\\..\\..\\src_client\\Assets\\Meshes\\bunny.obj");
+        //        GameObjectManager* manager = GameObjectManager::get();
+        //        GameObject* obj = new GameObject(manager->adjustName("Teapot"));
 
-               // obj->setPrimitiveType(PrimitiveType::CAPSULE);
-                obj->addComponent<MeshRenderer>(mesh);
-                manager->addObject(obj);
-                manager->setSelectedObject(obj);
-            }
-         /*   if (ImGui::MenuItem("Bunny")) {
-                GameObjectManager::get()->createModel("Bunny", this->shaderByteCode, this->sizeShader);
-            }
-            if (ImGui::MenuItem("Armadillo")) {
-                GameObjectManager::get()->createModel("Armadillo", this->shaderByteCode, this->sizeShader);
-            }*/
+        //       // obj->setPrimitiveType(PrimitiveType::CAPSULE);
+        //        obj->addComponent<MeshRenderer>(mesh);
+        //        manager->addObject(obj);
+        //        manager->setSelectedObject(obj);
+        //    }
+        // /*   if (ImGui::MenuItem("Bunny")) {
+        //        GameObjectManager::get()->createModel("Bunny", this->shaderByteCode, this->sizeShader);
+        //    }
+        //    if (ImGui::MenuItem("Armadillo")) {
+        //        GameObjectManager::get()->createModel("Armadillo", this->shaderByteCode, this->sizeShader);
+        //    }*/
 
-            ImGui::EndMenu();
-        }
+        //    ImGui::EndMenu();
+        //}
 
 
         ImGui::EndMainMenuBar();

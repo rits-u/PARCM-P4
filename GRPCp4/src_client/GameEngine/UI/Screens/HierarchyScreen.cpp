@@ -1,6 +1,6 @@
 #include "HierarchyScreen.h"
 
-HierarchyScreen::HierarchyScreen() : UIScreen("Hierarchy")
+HierarchyScreen::HierarchyScreen() : UIScreen("Hierarchy", true)
 {
 }
 

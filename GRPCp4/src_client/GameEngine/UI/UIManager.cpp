@@ -61,14 +61,9 @@ UIManager::UIManager(HWND windowHandle)
 
     //populate UI table;
     UINames uiNames;
-    //UIScreen* creditsScreen = new
     MenuToolbar* menuToolbar = new MenuToolbar();
     this->uiMap[uiNames.MENU_TOOLBAR] = menuToolbar;
     this->uiList.push_back(menuToolbar);
-
-    /*CreditsScreen* creditsScreen = new CreditsScreen();
-    this->uiMap[uiNames.CREDITS_SCREEN] = creditsScreen;
-    this->uiList.push_back(creditsScreen);*/
 
     InspectorScreen* inspectorScreen = new InspectorScreen();
     this->uiMap[uiNames.INSPECTOR_SCREEN] = inspectorScreen;
@@ -81,7 +76,6 @@ UIManager::UIManager(HWND windowHandle)
     SceneSelector* sceneSelector = new SceneSelector();
     this->uiMap[uiNames.SCENE_SELECTOR] = sceneSelector;
     this->uiList.push_back(sceneSelector);
-   // CreditsSreen* 
 }
 
 UIManager::~UIManager()

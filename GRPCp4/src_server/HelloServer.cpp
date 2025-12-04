@@ -16,7 +16,7 @@ grpc::Status HelloServer::SayHello(grpc::ServerContext* context, const HelloRequ
 
 void HelloServer::RunServer() {
 	//create a server at this IP
-	std::string serverAdd("0.0.0.0:50051");
+	std::string serverAdd("0.0.0.0:50051");	
 	HelloServer service;
 
 	//server builder
