@@ -76,6 +76,10 @@ UIManager::UIManager(HWND windowHandle)
     SceneSelector* sceneSelector = new SceneSelector();
     this->uiMap[uiNames.SCENE_SELECTOR] = sceneSelector;
     this->uiList.push_back(sceneSelector);
+
+    FPSDisplay* fpsDisplay = new FPSDisplay();
+    this->uiMap[uiNames.FPS_DISPLAY] = fpsDisplay;
+    this->uiList.push_back(fpsDisplay);
 }
 
 UIManager::~UIManager()

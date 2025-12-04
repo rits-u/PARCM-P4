@@ -34,7 +34,7 @@ MeshPtr MeshManager::createMesh(int ID, const void* objData, size_t dataSize)
 }
 
 MeshPtr MeshManager::getMesh(int ID) {
-	std::cout << "get Mesh: " << ID << std::endl;
+	//std::cout << "get Mesh: " << ID << std::endl;
 	return meshCache[ID];
 }
 

@@ -11,6 +11,7 @@ class EngineTime
 public:
 	static void initialize();
 	static double getDeltaTime();
+	static float getFPS();
 
 private:
 	EngineTime();
@@ -29,8 +30,9 @@ private:
 
 	double deltaTime = 0.0f;
 	int numFrames = 0;
-	double fpsTime = 0.0f;
-	int FPS = 0;
+	//int FPS = 0;
+	float fps = 60.f;
+	float smoothing = 0.9f;
 
 
 private:

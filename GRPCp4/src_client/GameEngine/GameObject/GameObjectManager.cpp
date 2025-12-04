@@ -100,7 +100,7 @@ void GameObjectManager::deleteObject(GameObject* gameObject)
 {
     for (int i = 0; i < this->gameObjectList.size(); i++) {
         if (this->gameObjectList[i] == gameObject) {
-            std::cout << "Deleted " << gameObject->getName() << std::endl;
+           // std::cout << "Deleted " << gameObject->getName() << std::endl;
             if (dynamic_cast<InputListener*>(this->gameObjectList[i]))
                 InputSystem::get()->removeListener((InputListener*)this->gameObjectList[i]);
             ComponentList& components = this->gameObjectList[i]->getComponents();

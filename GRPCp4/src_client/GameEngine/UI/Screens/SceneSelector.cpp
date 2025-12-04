@@ -24,6 +24,13 @@ void SceneSelector::draw()
 	this->displayScenePanel(4, 'D', "Elsewhere");
 	this->displayScenePanel(5, 'E', "Empty World");
 
+	if (ImGui::Button("View All Scenes")) {
+		SceneManager::get()->ViewAllScenes();
+	}
+	ImGui::NewLine();
+	if (ImGui::Button("Remove All Scenes")) {
+		SceneManager::get()->RemoveAllScenes();
+	}
 	ImGui::End();
 
 }
@@ -35,8 +42,7 @@ void SceneSelector::displayScenePanel(int ID, char c, std::string name)
 	ImGui::Text("Name: %s", name);
 	ImGui::Indent();
 	if (ImGui::Button("Load Scene")) {
-		SceneManager::get()->ViewScene(ID, name);
-		std::cout << name << std::endl;
+		SceneManager::get()->ViewScene(ID);
 	}
 	ImGui::SameLine();
 	if (ImGui::Button("Unload Scene")) {

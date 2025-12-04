@@ -33,13 +33,14 @@ public:
 	void LoadScene(int SceneID);
 	void ScheduleLoadScene(int SceneID);
 	void RegisterPreloadedScene(const SceneData& sceneData);
-	void ViewScene(int SceneID, std::string sceneName);
+	void ViewScene(int SceneID);
 	void ViewAllScenes();
+	void RemoveAllScenes();
 	SceneLoadProgress* getProgressByID(int SceneID);
 	void RegisterSceneProgress(int ID, SceneLoadProgress* progress);
 	std::vector<GameObject*> GetSceneObjectsByID(int sceneID);
 	void DeleteObjectsInScene(int SceneID);
-	void InstantiateSceneObject();
+	void InstantiateSceneObject(SceneModelInfo modelInfo, int SceneID);
 
 private:
 	SceneManager();
@@ -52,7 +53,7 @@ private:
 private:
 	SceneLoader* loader;
 	std::unique_ptr<ThreadPool> threadPool;
-	std::unordered_map<std::string, SceneData> preloadedScenes;
+	std::unordered_map<int, SceneData> preloadedScenes;
 	std::unordered_map<int, SceneLoadProgress*> sceneProgress;
 	std::unordered_map<int, std::vector<GameObject*>> sceneObjects;
 	

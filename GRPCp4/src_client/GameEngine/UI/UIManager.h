@@ -9,6 +9,7 @@
 #include "Screens/InspectorScreen.h"
 #include "Screens/HierarchyScreen.h"
 #include "Screens/SceneSelector.h"
+#include "Screens/FPSDisplay.h"
 
 #include "../GraphicsEngine/RenderSystem/RenderSystem.h"
 #include "../GraphicsEngine/GraphicsEngine.h"
