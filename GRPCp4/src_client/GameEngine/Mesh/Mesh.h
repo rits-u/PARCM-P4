@@ -17,6 +17,10 @@ public:
 	std::vector<VertexMesh>& getVertices();
 	std::vector<unsigned int>& getIndices();
 
+public:
+	VertexBufferPtr vb;
+	IndexBufferPtr ib;
+
 private:
 	std::vector<VertexMesh> m_vertices;
 	std::vector<unsigned int> m_indices;

@@ -13,9 +13,9 @@ public:
 	void RunServer();
 
 private:
-	std::string GetModelPath(int ID);
+	std::string GetModelPath(int ModelID);
 	void SetSceneProperties(SceneResponse* response, int SceneID);
 	void AddModelToData(SceneResponse* response, int ModelID, std::string name);
-	float RNG(int min, int max);
+	float RNG(float min, float max);
 
 };

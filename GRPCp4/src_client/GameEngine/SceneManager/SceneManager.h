@@ -4,6 +4,7 @@
 #include "../../../ThreadTool/ThreadPool.h"
 #include "SceneLoadTask.h"
 #include "../Math/MyTransform.h"
+#include "../GameObject/GameObject.h"
 
 struct SceneModelInfo {
 	int modelID;
@@ -32,9 +33,13 @@ public:
 	void LoadScene(int SceneID);
 	void ScheduleLoadScene(int SceneID);
 	void RegisterPreloadedScene(const SceneData& sceneData);
-	void InstantiateScene(std::string sceneName);
+	void ViewScene(int SceneID, std::string sceneName);
+	void ViewAllScenes();
 	SceneLoadProgress* getProgressByID(int SceneID);
 	void RegisterSceneProgress(int ID, SceneLoadProgress* progress);
+	std::vector<GameObject*> GetSceneObjectsByID(int sceneID);
+	void DeleteObjectsInScene(int SceneID);
+	void InstantiateSceneObject();
 
 private:
 	SceneManager();
@@ -49,5 +54,6 @@ private:
 	std::unique_ptr<ThreadPool> threadPool;
 	std::unordered_map<std::string, SceneData> preloadedScenes;
 	std::unordered_map<int, SceneLoadProgress*> sceneProgress;
+	std::unordered_map<int, std::vector<GameObject*>> sceneObjects;
 	
 };

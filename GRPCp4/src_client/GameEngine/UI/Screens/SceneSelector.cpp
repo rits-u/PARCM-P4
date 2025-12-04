@@ -17,12 +17,12 @@ void SceneSelector::draw()
 	ImGui::Begin(this->getName().c_str(), &this->activeSelf);
 	ImGui::Separator();
 
+	//sceneManager get scenes
 	this->displayScenePanel(1, 'A', "Waste Land");
 	this->displayScenePanel(2, 'B', "Nowhere");
 	this->displayScenePanel(3, 'C', "Somewhere");
 	this->displayScenePanel(4, 'D', "Elsewhere");
-	this->displayScenePanel(4, 'E', "Empty World");
-
+	this->displayScenePanel(5, 'E', "Empty World");
 
 	ImGui::End();
 
@@ -30,10 +30,17 @@ void SceneSelector::draw()
 
 void SceneSelector::displayScenePanel(int ID, char c, std::string name)
 {
+	ImGui::PushID(ID);
 	ImGui::Text("Scene %c", c);
+	ImGui::Text("Name: %s", name);
 	ImGui::Indent();
 	if (ImGui::Button("Load Scene")) {
-		SceneManager::get()->InstantiateScene(name);
+		SceneManager::get()->ViewScene(ID, name);
+		std::cout << name << std::endl;
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Unload Scene")) {
+		SceneManager::get()->DeleteObjectsInScene(ID);
 	}
 	SceneLoadProgress* progress = SceneManager::get()->getProgressByID(ID);
 	if (progress) {
@@ -45,6 +52,7 @@ void SceneSelector::displayScenePanel(int ID, char c, std::string name)
 	ImGui::Unindent();
 	ImGui::NewLine();
 	ImGui::Separator();
+	ImGui::PopID();
 
 }
 

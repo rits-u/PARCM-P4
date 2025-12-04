@@ -78,7 +78,7 @@ Mesh::Mesh(const wchar_t* fullPath) : Resource(fullPath)
 
 	//std::cout << "mesh ok" << std::endl;
 
-	std::cout << "asdasdasdasd : " << vertices.size() << std::endl;
+	//std::cout << "asdasdasdasd : " << vertices.size() << std::endl;
 
 }
 
@@ -108,6 +108,7 @@ Mesh::Mesh(const void* objData, size_t objSize) : Resource(L"")
 	std::vector<unsigned int> indices;
 	//std::cout << "shapes size: " << shapes.size() << std::endl;
 
+	//std::cout << "mesh creation" << std::endl;
 
 	for (size_t s = 0; s < shapes.size(); s++)
 	{

@@ -30,8 +30,8 @@ private:
 	static bool isInitialized;
 	static VertexShaderPtr sharedVS;
 	static PixelShaderPtr sharedPS;
-	static VertexBufferPtr sharedVB;
-	static IndexBufferPtr sharedIB;
+	VertexBufferPtr vb;
+	IndexBufferPtr ib;
 	ConstantBufferPtr cb;
 };
 

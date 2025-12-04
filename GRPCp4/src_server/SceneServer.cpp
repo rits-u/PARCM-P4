@@ -5,12 +5,6 @@
 grpc::Status SceneServer::PreloadScene(grpc::ServerContext* context, const SceneRequest* request, SceneResponse* response) {
 	int ID = request->sceneid();
 	SetSceneProperties(response, ID);
-
-	//Model* model = response->add_models();
-	//model->set_modelid(2);
-	//model->set_modelname("Bunny");
-
-
 	response->set_msg("Server got request: Scene " + std::to_string(ID));
 	return grpc::Status::OK;
 }
@@ -18,8 +12,6 @@ grpc::Status SceneServer::PreloadScene(grpc::ServerContext* context, const Scene
 grpc::Status SceneServer::StreamObjFile(grpc::ServerContext* context, const ObjFileRequest* request, grpc::ServerWriter<ObjChunk>* writer) {
 	std::string path = GetModelPath(request->modelid());
 	std::ifstream file(path, std::ios::binary);
-//	std::cout << "stream attempt from server" << std::endl;
-
 
 	if (!file)
 		return grpc::Status(grpc::StatusCode::NOT_FOUND, "File not found");
@@ -61,39 +53,72 @@ void SceneServer::RunServer() {
 	server->Wait();
 }
 
-std::string SceneServer::GetModelPath(int ID)
+std::string SceneServer::GetModelPath(int ModelID)
 {
-	std::string path;
-	if (ID == 2) {
-		path = "../../../src_server/Assets/Meshes/bunny.obj";
+	//std::cout << "get model path: " << ModelID << std::endl;
+	std::string path = "";
+	switch (ModelID) {
+		case 1: path = "../../../src_server/Assets/Meshes/teapot.obj"; break;
+		case 2: path = "../../../src_server/Assets/Meshes/bunny.obj"; break;
+		case 3: path = "../../../src_server/Assets/Meshes/asteroid.obj"; break;
+		case 4: path = "../../../src_server/Assets/Meshes/monitor.obj"; break;
+		case 5: path = "../../../src_server/Assets/Meshes/armadillo.obj"; break;
+		case 6: path = "../../../src_server/Assets/Meshes/statue.obj"; break;
+		case 7: path = "../../../src_server/Assets/Meshes/house.obj"; break;
+		case 8: path = "../../../src_server/Assets/Meshes/cat.obj"; break;
+		case 9: path = "../../../src_server/Assets/Meshes/sponza.obj"; break;
+		case 10: path = "../../../src_server/Assets/Meshes/spaceship.obj"; break;
+		case 11: path = "../../../src_server/Assets/Meshes/plant.obj"; break;
+		case 12: path = "../../../src_server/Assets/Meshes/hand.obj"; break;
+		case 13: path = "../../../src_server/Assets/Meshes/toilet.obj"; break;
 	}
-
 	return path;
 }
 
 void SceneServer::SetSceneProperties(SceneResponse* response, int SceneID)
 {
-	//response->set
 	switch (SceneID) {
 	case 1:
 		response->set_sceneid(1);
 		response->set_scenename("Waste Land");
 		AddModelToData(response, 2, "Bunny");
-
-		/*Model* model = response->add_models();
-		model->set_modelid(2);
-		model->set_modelname("Bunny");*/
-
+		AddModelToData(response, 3, "Asteroid");
+		AddModelToData(response, 4, "Monitor");
 		break;
 	case 2:
 		response->set_sceneid(2);
 		response->set_scenename("Nowhere");
-		AddModelToData(response, 2, "mafuyu");
-		AddModelToData(response, 2, "wasdasd");
+		AddModelToData(response, 2, "Bunny");
+		AddModelToData(response, 1, "Teapot");
+		AddModelToData(response, 6, "Statue");
+		AddModelToData(response, 12, "Hand");
 		break;
-
+	case 3:
+		response->set_sceneid(3);
+		response->set_scenename("Somewhere");
+		AddModelToData(response, 13, "Toilet");
+		AddModelToData(response, 5, "Armadillo");
+		break;
+	case 4:
+		response->set_sceneid(4);
+		response->set_scenename("Elsewhere");
+		AddModelToData(response, 9, "Sponza");
+		AddModelToData(response, 10, "Spaceship");
+		AddModelToData(response, 8, "Cat");
+		break;
+	case 5:
+		response->set_sceneid(5);
+		response->set_scenename("Empty World");
+		AddModelToData(response, 11, "Plant");
+		AddModelToData(response, 6, "Statue");
+		AddModelToData(response, 8, "Cat");
+		AddModelToData(response, 1, "Teapot");
+		AddModelToData(response, 5, "Armadillo");
+		break;
 	}
 	//std::cout << "scene id: " << SceneID << std::endl;
+
+
 
 }
 
@@ -105,7 +130,7 @@ void SceneServer::AddModelToData(SceneResponse* response, int ModelID, std::stri
 	model->set_modelname(name);
 	
 	Transform* t = model->mutable_transform();
-	int min = 0; int max = 5;
+	float min = 0; float max = 20;
 	Vector3* pos = t->mutable_position(); 
 	pos->set_x(RNG(min, max)); pos->set_y(RNG(min, max)); pos->set_z(RNG(min, max));
 
@@ -113,7 +138,7 @@ void SceneServer::AddModelToData(SceneResponse* response, int ModelID, std::stri
 	Vector3* rot = t->mutable_rotation();
 	rot->set_x(RNG(min, max)); rot->set_y(RNG(min, max)); rot->set_z(RNG(min, max));
 
-	int n = RNG(1, 5);
+	float n = RNG(0.1, 5);
 	Vector3* sca = t->mutable_scale();
 	sca->set_x(n); sca->set_y(n); sca->set_z(n);
 
@@ -127,10 +152,10 @@ void SceneServer::AddModelToData(SceneResponse* response, int ModelID, std::stri
 
 }
 
-float SceneServer::RNG(int min, int max)
+float SceneServer::RNG(float min, float max)
 {
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> distrib(min, max);
+	std::uniform_real_distribution<> distrib(min, max);
 	return (float)distrib(gen);
 }

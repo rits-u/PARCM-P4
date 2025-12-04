@@ -26,26 +26,26 @@ Camera::~Camera()
 void Camera::update(float deltaTime)
 {
 	if (isNavigating) {
-		float offset = 0.08f;
+		//float offset = 0.08f;
 
 		if (InputSystem::get()->isKeyDown('W'))
 		{
-			this->forward = 1.0f * offset;
+			this->forward = 1.0f * this->speed;
 			this->updateViewMatrix();
 		}
 		else if (InputSystem::get()->isKeyDown('S'))
 		{
-			this->forward = -1.0f * offset;
+			this->forward = -1.0f * this->speed;
 			this->updateViewMatrix();
 		}
 		else if (InputSystem::get()->isKeyDown('A'))
 		{
-			this->rightward = -1.0f * offset;
+			this->rightward = -1.0f * this->speed;
 			this->updateViewMatrix();
 		}
 		else if (InputSystem::get()->isKeyDown('D'))
 		{
-			this->rightward = 1.0f * offset;
+			this->rightward = 1.0f * this->speed;
 			this->updateViewMatrix();
 		}
 	}
@@ -114,6 +114,11 @@ void Camera::setWidthAndHeight(int width, int height)
 {
 	this->width = width;
 	this->height = height;
+}
+
+void Camera::setSpeed(float speed)
+{
+	this->speed = speed;
 }
 
 void Camera::onKeyDown(int key)

@@ -15,7 +15,7 @@ void SceneManager::initialize() {
 	auto channel = grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials());
 	sharedInstance->loader = new SceneLoader(channel);
 
-	sharedInstance->threadPool = std::make_unique<ThreadPool>(2);
+	sharedInstance->threadPool = std::make_unique<ThreadPool>(5);
 	sharedInstance->threadPool->StartScheduling();
 
 	/*sharedInstance->loader = new SceneLoader(
@@ -55,33 +55,48 @@ void SceneManager::ScheduleLoadScene(int SceneID)
 void SceneManager::RegisterPreloadedScene(const SceneData& sceneData)
 {
 	this->preloadedScenes[sceneData.sceneName] = SceneData(sceneData);
-	std::cout << "registered scene " << sceneData.sceneName << " with " << sceneData.models.size() << " models. \n";
+	std::cout << "\n [REGISTERED Scene] " << sceneData.sceneName << " with " << sceneData.models.size() << " models. \n";
 }
 
-void SceneManager::InstantiateScene(std::string sceneName)
+void SceneManager::ViewScene(int SceneID, std::string sceneName)
 {
 	MeshManager* meshManager = GraphicsEngine::get()->getMeshManager();
 	GameObjectManager* objManager = GameObjectManager::get();
 
 	auto it = preloadedScenes.find(sceneName);
 	if (it == preloadedScenes.end()) {
-		std::cout << "[SCENE] " << sceneName << " is not loaded yet" << std::endl;
+		std::cout << "\n [SCENE] " << sceneName << " is not loaded yet" << std::endl;
 		return;
 	}
 	else {
 		std::cout << "\n [SCENE] " << sceneName << " scene is found " << std::endl;
 	}
 
+	std::cout << "\n Viewing " << sceneName << "..." << std::endl;
+	
+	//std::vector<GameObject*> objs;
 	for (const auto& modelInfo : preloadedScenes[sceneName].models) {
 		MeshPtr mesh = meshManager->getMesh(modelInfo.modelID);
-		GameObject* obj = new GameObject(objManager->adjustName(modelInfo.modelName));
+		std::cout << "model id in instantiate: " << modelInfo.modelID << std::endl;
+
+		GameObject* obj = new GameObject(modelInfo.modelName);
 		obj->addComponent<MeshRenderer>(mesh);
 		obj->setPosition(modelInfo.transform.localPosition);
 		obj->setRotation(modelInfo.transform.localRotation);
 		obj->setScale(modelInfo.transform.localScale);
 		GameObjectManager::get()->addObject(obj);
+		this->sceneObjects[SceneID].push_back(obj);
 	}
+
+	std::cout << "Scene Objects Count: " << this->sceneObjects[SceneID].size() << std::endl;
 }
+
+//void SceneManager::ViewAllScenes()
+//{
+//	for (int i = 1; i <= 5; i++) {
+//		for()
+//	}
+//}
 
 SceneLoadProgress* SceneManager::getProgressByID(int SceneID)
 {
@@ -91,6 +106,18 @@ SceneLoadProgress* SceneManager::getProgressByID(int SceneID)
 void SceneManager::RegisterSceneProgress(int ID, SceneLoadProgress* progress)
 {
 	this->sceneProgress[ID] = progress;
+}
+
+std::vector<GameObject*> SceneManager::GetSceneObjectsByID(int sceneID)
+{
+	return this->sceneObjects[sceneID];
+}
+
+void SceneManager::DeleteObjectsInScene(int SceneID)
+{
+	for (GameObject* obj : this->sceneObjects[SceneID]) {
+		GameObjectManager::get()->deleteObject(obj);
+	}
 }
 
 SceneManager::SceneManager() {

@@ -25,6 +25,7 @@ public:
 	Matrix4x4 getViewMatrix();
 	void updateViewMatrix();
 	void setWidthAndHeight(int width, int height);
+	void setSpeed(float speed);
 
 	virtual void onKeyDown(int key);
 	virtual void onKeyUp(int key);
@@ -55,6 +56,7 @@ private:
 	float forward = 0.0f;
 	float rightward = 0.0f;
 	Matrix4x4 worldCamera;
+	float speed = 0.08f;
 
 };
 
