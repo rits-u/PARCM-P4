@@ -12,16 +12,10 @@ void SceneLoader::PreloadScene(const int& SceneID) {
 
 	SceneRequest request;
 	request.set_sceneid(SceneID);
-
-//	std::cout << "Scene ID: " << SceneID << std::endl;
-
 	SceneResponse response;
 	grpc::ClientContext context;
 
 	grpc::Status status = stub->PreloadScene(&context, request, &response);
-
-	//std::cout << "models size: " << response.models_size() << std::endl;
-
 	if (status.ok()) {
 		SceneData sceneData;
 		sceneData.sceneID = SceneID;
@@ -75,8 +69,6 @@ std::string SceneLoader::StreamObjFile(const int& ModelID, std::atomic<int64_t>&
 		bytesReceived += chunk.data().size();
 		IETThread::sleep(25);
 	}
-
-	//std::cout << "ok" << std::endl;
 	
 	grpc::Status status = reader->Finish();
 	if (!status.ok()) {

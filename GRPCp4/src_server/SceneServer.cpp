@@ -124,7 +124,6 @@ void SceneServer::SetSceneProperties(SceneResponse* response, int SceneID)
 
 void SceneServer::AddModelToData(SceneResponse* response, int ModelID, std::string name)
 {
-	
 	Model* model = response->add_models();
 	model->set_modelid(ModelID);
 	model->set_modelname(name);

@@ -17,11 +17,6 @@ message Transform {
 	Vector3 scale = 3;
 }
 
-//message Obj {
-//	string objName = 1;
-//	bytes objFile = 2;
-//}
-
 message Model {
 	int32 modelID = 1;
 	string modelName = 2;

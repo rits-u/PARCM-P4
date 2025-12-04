@@ -16,16 +16,10 @@ MeshPtr MeshManager::createMeshFromFile(const wchar_t* filePath)
 
 MeshPtr MeshManager::createMesh(int ID, const void* objData, size_t dataSize)
 {
-	//if mesh already exists
-	//auto it = meshCache.find(ID);
-	//if (it != meshCache.end()) {
-	//	return it->second;
-	//}
+	//if mesh already exists, return
 	if (meshCache.contains(ID)) {
 		return meshCache[ID];
 	}
-
-	
 
 	//if not, create 
 	MeshPtr mesh = std::make_shared<Mesh>(objData, dataSize);
