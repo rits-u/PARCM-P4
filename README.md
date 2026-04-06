@@ -1,5 +1,5 @@
 # PARCM-P4 Realtime Scene Viewer
-This is a school project that showcases the use of multithreading to load multiple scenes containing 3D models simultaneously. Each scene can only be viewed once it has finished loading, and users can view multiple scenes at the same time or disable them.
+This was a school project that showcases the use of multithreading to load multiple scenes containing 3D models simultaneously. Each scene can only be viewed once it has finished loading, and users can view multiple scenes at the same time or disable them.
 
 
 ## Group Members - Pair 3
